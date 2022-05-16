@@ -45,7 +45,7 @@ body {
     
     .main-card {
         display: inline-flex;
-        
+        width: 18rem;
     }
     
     .card-img-top {
@@ -74,5 +74,14 @@ body {
         .changeimage {
             position: absolute;
             bottom: -65%;
+        }
+      }
+
+      @media (max-width: 600px) { 
+       
+        .main-card { 
+            width: 90%;
+            padding: 0px;
+            margin: 0px;
         }
       }
