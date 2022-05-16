@@ -22,5 +22,6 @@
   "devDependencies": {
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^28.1.0"
-  }
+  },
+  "type": "module"
 }
