@@ -13,6 +13,7 @@ body {
     .image-carousel {
         object-fit: cover;
         height: 400px;
+        object-position: 10px 50px;
         
     }
     
@@ -46,8 +47,32 @@ body {
         display: inline-flex;
         
     }
-
+    
     .card-img-top {
         height: 18rem;
         object-fit: cover;
     }
+    
+    @media (min-width: 800px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -20%;
+        }
+      }
+
+      @media (min-width: 1000px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -35%;
+        }
+      }
+
+      @media (min-width: 1200px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -65%;
+        }
+      }
