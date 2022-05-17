@@ -4,6 +4,7 @@
 const postBtns = document.querySelectorAll(".form-btn");
 const attractionsPosts = document.querySelector(".attractions-posts");
 const placesPosts = document.querySelector(".places-posts");
+const replyModalArea = document.querySelector(".modal-reply-area");
 
 //Adding all posts that are on server on load
 
@@ -78,12 +79,12 @@ function append(dataType, post) {
     );
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
-      ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
+      ` <div class="card main-card m-3"  style="width: 18rem;">
                             
                     <div class="card-body">
                       <h5 class="card-title">${post.title}</h5>
                       <p class="card-text">${post.body}</p>
-                      <a href="#" class="btn card-button">View the Discussion</a>
+                      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
                     </div>
               </div>
             `
@@ -94,18 +95,60 @@ function append(dataType, post) {
   else {
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
-      ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
+      ` <div class="card main-card m-3"  style="width: 18rem;">
                           
                   <div class="card-body">
                     <h5 class="card-title">${post.title}</h5>
                     <p class="card-text">${post.body}</p>
-                    <a href="#" class="btn card-button">View the Discussion</a>
+                    <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
                   </div>
             </div>
           `
     );
   }
 }
+
+//Reply Modals
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("reply-button")) {
+    replyModalArea.innerHTML = "";
+
+    let dataType = e.target.id.split("-")[0];
+    let postId = e.target.id.split("-")[1];
+
+    fetch(`http://localhost:3000/${dataType}/${postId}`)
+      .then((r) => r.json())
+      .then((postData) => {
+        replyModalArea.insertAdjacentHTML(
+          "afterbegin",
+          `
+        <div class="modal-header">
+          <h5 class="modal-title" >${postData.title}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body-post">${postData.body}</div>
+        <div class="modal-body modal-reply-body">
+          
+        
+        <label for="reply-text" class="col-form-label"></label>
+        <textarea class="form-control attractions-body" rows="5"  maxlength="200" id="reply-text" placeholder="Message" required></textarea>
+
+        <button type="button" id="places" data-bs-dismiss="modal" class="form-btn btn nav-button">Send reply</button>
+        </div>
+      `
+        );
+        postData.replies.forEach((reply) => {
+          document
+            .querySelector(".modal-reply-body")
+            .insertAdjacentHTML(
+              "afterbegin",
+              `<div class="reply">${reply}</div>`
+            );
+        });
+      });
+  }
+});
 
 //Giphy
 
