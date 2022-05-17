@@ -40,7 +40,7 @@
 - Planning
 
   - Choosing a topic - London and travelling
-  - Creating a vision of our webpage
+  - Creating a vision of our webpage for mobile first approach:
 
     - Using Wireframes for visualisation:
 
@@ -84,7 +84,11 @@ These colours replicate the blue and red of English flag found often in associat
 
 ## Wins
 
-- adding a new card dynamically to the carousel - screenshot
+- adding a new post dynamically to the correct carousel section
+
+<br>
+
+![code for adding card to right carousel page](https://i.ibb.co/pQc1VLq/Screenshot-2022-05-17-140739.png)
 
 ## Challenges
 
