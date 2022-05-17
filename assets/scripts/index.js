@@ -103,7 +103,7 @@ function append(dataType, post) {
 }
 
 //Giphy
-
+const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5"
 document.addEventListener("DOMContentLoaded", init);
 function init() {
   document.getElementById("gifSearch").addEventListener("click", e => {
@@ -117,6 +117,18 @@ function init() {
     .then(content => {
       console.log(content.data);
       console.log('META', content.meta);
+      content.data.forEach(data => {
+        let fig = document.createElement('figure');
+        let img = document.createElement('img');
+        img.src = data.images.downsized.url;
+        img.alt = content.data.title;
+        fig.appendChild(img);
+        let displayGiphy = document.querySelector('.displayGiphy');
+        displayGiphy.insertAdjacentElement('afterbegin', fig);
+      })
+    })
+    .catch(err => {
+      console.error(err);
     })
   })
 }
