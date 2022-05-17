@@ -3,6 +3,7 @@ body {
 }
 
 :root {
+
     --london-red: #af4a4a;
     --london-blue: #646e95;
     --London-white: #efefef;
@@ -59,6 +60,12 @@ body {
         display: inline-flex;
       }
 
+/* Giphy */
+
+.displayGiphy {
+  display: inline-flex;
+}
+
     
     @media (min-width: 800px) {
        
@@ -76,6 +83,92 @@ body {
         }
       }
 
+      @media (min-width: 1200px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -65%;
+        }
+      }
+
+      @media (max-width: 600px) { 
+       
+        .main-card { 
+            width: 90%;
+            padding: 0px;
+            margin: 0px;
+        }
+      }
+ 
+ 
+
+  --london-red: #af4a4a;
+  --london-blue: #646e95;
+  --London-white: #efefef;
+}
+
+.image-carousel {
+  object-fit: cover;
+  height: 400px;
+  object-position: 10px 50px;
+}
+
+.london-blue {
+  color: var(--london-blue);
+}
+
+.bg-london-blue {
+  background-color: var(--london-blue);
+}
+
+.london-red {
+  color: var(--london-red);
+}
+
+.bg-london-red {
+  background-color: var(--london-red);
+}
+
+.main-card {
+  display: inline-flex;
+  width: 18rem;
+}
+
+.card-img-top {
+  height: 18rem;
+  object-fit: cover;
+}
+
+.nav-button {
+  background-color: var(--london-blue);
+  color: var(--London-white);
+}
+
+.card-button {
+  background-color: var(--london-red);
+  color: var(--London-white);
+  position: absolute;
+  bottom: 5%;
+  left: 28%;
+}
+
+.main-card {
+  display: inline-flex;
+}
+
+@media (min-width: 800px) {
+  .changeimage {
+    position: absolute;
+    bottom: -20%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .changeimage {
+    position: absolute;
+    bottom: -35%;
+  }
+}
 
 .nav-button {
   background-color: var(--london-blue);
@@ -99,25 +192,22 @@ body {
   object-fit: cover;
 }
 
-      @media (min-width: 1200px) {
-       
-        .changeimage {
-            position: absolute;
-            bottom: -65%;
-        }
-      }
+@media (min-width: 1200px) {
+  .changeimage {
+    position: absolute;
+    bottom: -65%;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-card {
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+  }
+}
 
 
-      @media (max-width: 600px) { 
-       
-        .main-card { 
-            width: 90%;
-            padding: 0px;
-            margin: 0px;
-        }
-      }
- 
- 
 .card {
   border: black solid 1px;
   aspect-ratio: 1;
@@ -134,4 +224,9 @@ body {
   font-size: 3rem;
 }
 
-/* Form for posting */
+/* Reply Modal */
+
+/* #reply-modal {
+  padding: 15rem;
+  width: 1000px;
+} */
