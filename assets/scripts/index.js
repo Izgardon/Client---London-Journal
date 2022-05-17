@@ -1,21 +1,21 @@
 /* import { postNewPost } from "./app.js"; */
 //Things that directly affect the DOM, event listeners etc
 
-const postBtns = document.querySelectorAll(".form-btn");
-const attractionsPosts = document.querySelector(".attractions-posts");
-const placesPosts = document.querySelector(".places-posts");
-const replyModalArea = document.querySelector(".modal-reply-area");
+const postBtns = document.querySelectorAll('.form-btn');
+const attractionsPosts = document.querySelector('.attractions-posts');
+const placesPosts = document.querySelector('.places-posts');
+const replyModalArea = document.querySelector('.modal-reply-area');
 
 //Adding all posts that are on server on load
 
-getAllPosts("general");
-getAllPosts("attractions");
-getAllPosts("places");
+getAllPosts('general');
+getAllPosts('attractions');
+getAllPosts('places');
 
 //Event listeners
 
 postBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
 
     let dataType = e.target.id;
@@ -26,8 +26,8 @@ postBtns.forEach((btn) => {
     };
     postNewPost(dataType, postData);
 
-    document.querySelector(`.${dataType}-title`).value = "";
-    document.querySelector(`.${dataType}-body`).value = "";
+    document.querySelector(`.${dataType}-title`).value = '';
+    document.querySelector(`.${dataType}-body`).value = '';
   });
 });
 
@@ -49,10 +49,10 @@ function getAllPosts(dataType) {
 
 function postNewPost(dataType, post) {
   const options = {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(post),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   fetch(`http://localhost:3000/${dataType}`, options)
@@ -72,13 +72,13 @@ function append(dataType, post) {
 
   if (post.id % 3 == 1) {
     eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `<div class="carousel-item ${
-        page == 1 ? "active" : ""
+        page == 1 ? 'active' : ''
       }  ${dataType}-${page}"></div>`
     );
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       ` <div class="card main-card m-3"  style="width: 18rem;">
                             
                     <div class="card-body">
@@ -94,7 +94,7 @@ function append(dataType, post) {
   //Else statement deals with just adding new posts to current carousel page
   else {
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       ` <div class="card main-card m-3"  style="width: 18rem;">
                           
                   <div class="card-body">
@@ -110,18 +110,18 @@ function append(dataType, post) {
 
 //Reply Modals
 
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("reply-button")) {
-    replyModalArea.innerHTML = "";
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('reply-button')) {
+    replyModalArea.innerHTML = '';
 
-    let dataType = e.target.id.split("-")[0];
-    let postId = e.target.id.split("-")[1];
+    let dataType = e.target.id.split('-')[0];
+    let postId = e.target.id.split('-')[1];
 
     fetch(`http://localhost:3000/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
-          "afterbegin",
+          'afterbegin',
           `
         <div class="modal-header">
           <h5 class="modal-title" >${postData.title}</h5>
@@ -140,9 +140,9 @@ document.addEventListener("click", (e) => {
         );
         postData.replies.forEach((reply) => {
           document
-            .querySelector(".modal-reply-body")
+            .querySelector('.modal-reply-body')
             .insertAdjacentHTML(
-              "afterbegin",
+              'afterbegin',
               `<div class="reply">${reply}</div>`
             );
         });
@@ -151,41 +151,32 @@ document.addEventListener("click", (e) => {
 });
 
 //Giphy
-const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5"
-document.addEventListener("DOMContentLoaded", init);
+const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
+document.addEventListener('DOMContentLoaded', init);
 function init() {
-  document.getElementById("gifSearch").addEventListener("click", (e) => {
+  document.getElementById('gifSearch').addEventListener('click', (e) => {
     e.preventDefault();
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
-    let str = document.getElementById("search").value.trim();
+    let str = document.getElementById('search').value.trim();
     url = url.concat(str);
     console.log(url);
     fetch(url)
-
-    .then(resp => resp.json())
-    .then(content => {
-      console.log(content.data);
-      console.log('META', content.meta);
-      content.data.forEach(data => {
-        let fig = document.createElement('figure');
-        let img = document.createElement('img');
-        img.src = data.images.fixed_height_small.url;
-        img.alt = content.data.title;
-        fig.appendChild(img);
-        let displayGiphy = document.querySelector('.displayGiphy');
-        displayGiphy.insertAdjacentElement('afterbegin', fig);
-      })
-    })
-    .catch(err => {
-      console.error(err);
-    })
-  })
-
       .then((resp) => resp.json())
       .then((content) => {
         console.log(content.data);
-        console.log("META", content.meta);
+        console.log('META', content.meta);
+        content.data.forEach((data) => {
+          let fig = document.createElement('figure');
+          let img = document.createElement('img');
+          img.src = data.images.fixed_height_small.url;
+          img.alt = content.data.title;
+          fig.appendChild(img);
+          let displayGiphy = document.querySelector('.displayGiphy');
+          displayGiphy.insertAdjacentElement('afterbegin', fig);
+        });
+      })
+      .catch((err) => {
+        console.error(err);
       });
   });
-
 }
