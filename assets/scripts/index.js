@@ -30,7 +30,6 @@ postBtns.forEach((btn) => {
   });
 });
 
-
 //Functions
 
 //Getting all posts on load
@@ -67,6 +66,9 @@ function postNewPost(dataType, post) {
 
 function append(dataType, post) {
   let page = Math.ceil(post.id / 3);
+
+  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
+
   if (post.id % 3 == 1) {
     eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
       "beforeend",
@@ -86,7 +88,10 @@ function append(dataType, post) {
               </div>
             `
     );
-  } else {
+  }
+
+  //Else statement deals with just adding new posts to current carousel page
+  else {
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
       ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
@@ -102,25 +107,21 @@ function append(dataType, post) {
   }
 }
 
-
-
-=======
 //Giphy
 
 document.addEventListener("DOMContentLoaded", init);
 function init() {
-  document.getElementById("gifSearch").addEventListener("click", e => {
+  document.getElementById("gifSearch").addEventListener("click", (e) => {
     e.preventDefault();
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
     let str = document.getElementById("search").value.trim();
     url = url.concat(str);
     console.log(url);
     fetch(url)
-    .then(resp => resp.json())
-    .then(content => {
-      console.log(content.data);
-      console.log('META', content.meta);
-    })
-  })
+      .then((resp) => resp.json())
+      .then((content) => {
+        console.log(content.data);
+        console.log("META", content.meta);
+      });
+  });
 }
-
