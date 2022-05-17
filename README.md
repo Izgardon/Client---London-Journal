@@ -39,12 +39,30 @@
 
 - Planning
   - Choosing a topic - London and travelling
-  - Creating a vision of our webpage, choosing colours
+  - Creating a vision of our webpage, choosing colours:
+
+The main colours used in this project were:
+
+#646E95 = blue
+#AF4A4A = red
+
+![Blue colour](https://i.ibb.co/0C9wcM5/Screenshot-2022-05-17-095516.png)
+![Red colour](https://i.ibb.co/vxYKHm1/Screenshot-real-2022-05-17-095719.png)
+
+These colours replicate the blue and red of English flag found often in association of England's capital.
+
 - Creating 2 repos - server and client
-- Creating endpoints in server
+- Creating endpoints in server / Backend
 - Creating main page CSS and HTML
-- Discussing issues that we hadn't see : we need 2 modals - 1 for comments, 1 for making post, revisioning the cards on our main page
+- Discussing issues that we couldn't foresee : we need 2 modals - 1 for comments, 1 for making post, revisioning, rethinking the cards on our main page
 - deploying server repo (staging branch) to heroku
+- Focusing on detailed structure of our webpage (adding new cards to carousels)
+
+## Wins
+
+- adding a new card dynamically to the carousel - screenshot
+
+## Challenges
 
 ## Licence
 
