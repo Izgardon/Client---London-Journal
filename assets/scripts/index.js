@@ -151,7 +151,7 @@ document.addEventListener("click", (e) => {
 });
 
 //Giphy
-
+const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5"
 document.addEventListener("DOMContentLoaded", init);
 function init() {
   document.getElementById("gifSearch").addEventListener("click", (e) => {
@@ -161,10 +161,31 @@ function init() {
     url = url.concat(str);
     console.log(url);
     fetch(url)
+
+    .then(resp => resp.json())
+    .then(content => {
+      console.log(content.data);
+      console.log('META', content.meta);
+      content.data.forEach(data => {
+        let fig = document.createElement('figure');
+        let img = document.createElement('img');
+        img.src = data.images.fixed_height_small.url;
+        img.alt = content.data.title;
+        fig.appendChild(img);
+        let displayGiphy = document.querySelector('.displayGiphy');
+        displayGiphy.insertAdjacentElement('afterbegin', fig);
+      })
+    })
+    .catch(err => {
+      console.error(err);
+    })
+  })
+
       .then((resp) => resp.json())
       .then((content) => {
         console.log(content.data);
         console.log("META", content.meta);
       });
   });
+
 }
