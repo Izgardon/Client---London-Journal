@@ -30,6 +30,7 @@ btnPost.addEventListener("click", (e) => {
   eval(`${dataType + "Body"}`).value = "";
 });
 
+
 //Functions
 
 //Getting all posts on load
@@ -100,3 +101,21 @@ function append(dataType, post) {
     );
   }
 }
+
+//Giphy
+
+document.addEventListener("DOMContentLoaded", init);
+function init() {
+  document.getElementById("gifSearch").addEventListener("click", e => {
+    e.preventDefault();
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
+    let str = document.getElementById("search").value.trim();
+    url = url.concat(str);
+    console.log(url);
+    fetch(url)
+    .then(resp => resp.json())
+    .then(content => {
+      console.log(content.data);
+      console.log('META', content.meta);
+    })
+  })

@@ -3,6 +3,78 @@ body {
 }
 
 :root {
+    --london-red: #af4a4a;
+    --london-blue: #646e95;
+    --London-white: #efefef;
+    }
+    
+    
+    .image-carousel {
+        object-fit: cover;
+        height: 400px;
+        object-position: 10px 50px;
+        
+    }
+    
+    .london-blue {
+        color: var(--london-blue);
+    }
+    
+    .bg-london-blue {
+        background-color: var(--london-blue);
+    }
+    
+    .london-red {
+        color: var(--london-red);
+    }
+    
+    .bg-london-red {
+        background-color: var(--london-red);
+    }
+    
+    .nav-button {
+        background-color: var(--london-blue);
+        color: var(--London-white);
+    }
+    
+    .card-button {
+        background-color: var(--london-red);
+        color: var(--London-white);
+    }
+    
+    .main-card {
+        display: inline-flex;
+        
+    }
+    
+    .card-img-top {
+        height: 18rem;
+        object-fit: cover;
+    }
+    
+    @media (min-width: 800px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -20%;
+        }
+      }
+
+      @media (min-width: 1000px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -35%;
+        }
+      }
+
+      @media (min-width: 1200px) {
+       
+        .changeimage {
+            position: absolute;
+            bottom: -65%;
+        }
+      }
   --london-red: #af4a4a;
   --london-blue: #646e95;
   --London-white: #efefef;
