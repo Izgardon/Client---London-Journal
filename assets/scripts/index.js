@@ -1,9 +1,9 @@
 /* import { postNewPost } from "./app.js"; */
 //Things that directly affect the DOM, event listeners etc
 
-const btnPost = document.querySelector(".button1");
-const generalTitle = document.querySelector("#general-title");
-const generalBody = document.querySelector("#general-body");
+const btnPost = document.querySelector(".general-btn");
+const generalTitle = document.querySelector(".general-title");
+const generalBody = document.querySelector(".general-body");
 const generalPosts = document.querySelector(".general-posts");
 const attractionsPosts = document.querySelector(".attractions-posts");
 const placesPosts = document.querySelector(".places-posts");
@@ -17,7 +17,8 @@ getAllPosts("places");
 //Event listeners
 
 btnPost.addEventListener("click", (e) => {
-  e.preventDefault();
+  /* e.preventDefault(); */
+  console.log("hello");
   let dataType = e.target.id;
 
   const postData = {
@@ -88,7 +89,7 @@ function append(dataType, post) {
   } else {
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
-      ` <div class="card main-card m-3" id="${post.id} "style="width: 18rem;">
+      ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
                           
                   <div class="card-body">
                     <h5 class="card-title">${post.title}</h5>
@@ -100,3 +101,19 @@ function append(dataType, post) {
     );
   }
 }
+
+//Modals
+
+const formModal = document.getElementById("form-general");
+formModal.addEventListener("show.bs.modal", (event) => {
+  // Button that triggered the modal
+  const button = event.relatedTarget;
+  // Extract info from data-bs-* attributes
+  const recipient = button.getAttribute("data-bs-whatever");
+  // If necessary, you could initiate an AJAX request here
+  // and then do the updating in a callback.
+  //
+  // Update the modal's content.
+  const modalTitle = formModal.querySelector(".modal-title");
+  const modalBodyInput = formModal.querySelector(".modal-body input");
+});

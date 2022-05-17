@@ -41,6 +41,50 @@
 
     <main>
 
+      <div class="form-modal none">
+        <h3 class="form-title">Add a new Discussion Topic here</h3>
+        <form action="" class="post-form">
+          <div>
+          <label class="label-textinput" for="general-title">Title</label>
+          <input type="text" class="form-input" id="general-title">
+          </div>
+          <div>
+            <label class="label-textarea" for="general-body">Message</label>
+          <textarea class="form-textarea" id="general-body"  cols="30" rows="5"></textarea>
+        </div>
+        <button class="button1" id="general">Add a post</button>
+        </form>
+      </div>
+
+      <button type="button" class="btn nav-button" data-bs-toggle="modal" data-bs-target="#form-general">Open modal</button>
+
+      <div class="modal fade" id="form-general" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Add your own post here:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Title:</label>
+                  <input type="text" class="form-control general-title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control general-body" rows="5"  maxlength="200" required></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" id="general" class="general-btn btn nav-button">Add Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <!-- TITLE SECTION -->
 
 <h1 class="london-red p-5">London Travel Title</h1>
@@ -56,11 +100,7 @@
         <!-- ADVICE SECTION -->
 
         <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
-        <form action="">
-          <input type="text" id="general-title">
-          <input type="text" id="general-body">
-          <button class="button1" id="general">Add a post</button>
-        </form>
+        
         
 
         <!-- Advice Carousel -->

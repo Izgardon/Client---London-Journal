@@ -39,7 +39,7 @@ body {
   color: var(--London-white);
   position: absolute;
   bottom: 5%;
-  left: 28%;
+  left: 22%;
 }
 
 .main-card {
@@ -65,4 +65,60 @@ body {
 .slide-btn {
   color: black;
   font-size: 3rem;
+}
+
+/* Form for posting */
+
+.form-modal {
+  position: fixed;
+  width: 600px;
+  height: fit-content;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: grey solid 1px;
+  z-index: 100;
+}
+
+.post-form {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.form-title {
+  margin-top: 2rem;
+}
+
+.form-input {
+  width: 60%;
+  margin-inline: auto;
+}
+
+.post-form > button {
+  width: 50%;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+}
+.form-textarea {
+  width: 60%;
+  margin-inline: auto;
+}
+
+.label-textarea {
+  position: absolute;
+  left: 8%;
+}
+
+.label-textinput {
+  position: absolute;
+  left: 8%;
+}
+
+.none {
+  display: none;
 }
