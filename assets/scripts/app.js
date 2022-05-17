@@ -1,4 +1,4 @@
-export function test(dataType, postData, posts) {
+export function postNewPost(dataType, postData, posts) {
   const options = {
     method: "POST",
     body: JSON.stringify(postData),
@@ -11,7 +11,14 @@ export function test(dataType, postData, posts) {
     .then(
       posts.insertAdjacentHTML(
         "afterbegin",
-        `<p>${postData.title} is the best, better than ${postData.body}</p>`
+        `<div class="card main-card m-3" id="${postData.id} "style="width: 18rem;">
+                        
+        <div class="card-body">
+          <h5 class="card-title">${postData.title}</h5>
+          <p class="card-text">${postData.body}</p>
+          <a href="#" class="btn card-button">View the Discussion</a>
+        </div>
+      </div>`
       )
     )
     .catch(console.warn);
