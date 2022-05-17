@@ -119,3 +119,4 @@ function init() {
       console.log('META', content.meta);
     })
   })
+}
