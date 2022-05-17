@@ -59,6 +59,12 @@ body {
         display: inline-flex;
       }
 
+/* Giphy */
+
+.displayGiphy {
+  display: inline-flex;
+}
+
     
     @media (min-width: 800px) {
        

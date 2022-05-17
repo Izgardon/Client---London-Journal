@@ -120,7 +120,7 @@ function init() {
       content.data.forEach(data => {
         let fig = document.createElement('figure');
         let img = document.createElement('img');
-        img.src = data.images.downsized.url;
+        img.src = data.images.fixed_height_small.url;
         img.alt = content.data.title;
         fig.appendChild(img);
         let displayGiphy = document.querySelector('.displayGiphy');
