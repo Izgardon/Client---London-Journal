@@ -30,6 +30,7 @@ postBtns.forEach((btn) => {
   });
 });
 
+
 //Functions
 
 //Getting all posts on load
@@ -101,19 +102,25 @@ function append(dataType, post) {
   }
 }
 
-//Modals
 
-/* const formModal = document.getElementById("form-general");
-formModal.addEventListener("show.bs.modal", (event) => {
-  // Button that triggered the modal
-  const button = event.relatedTarget;
-  // Extract info from data-bs-* attributes
-  const recipient = button.getAttribute("data-bs-whatever");
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
-  const modalTitle = formModal.querySelector(".modal-title");
-  const modalBodyInput = formModal.querySelector(".modal-body input");
-});
- */
+
+=======
+//Giphy
+
+document.addEventListener("DOMContentLoaded", init);
+function init() {
+  document.getElementById("gifSearch").addEventListener("click", e => {
+    e.preventDefault();
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
+    let str = document.getElementById("search").value.trim();
+    url = url.concat(str);
+    console.log(url);
+    fetch(url)
+    .then(resp => resp.json())
+    .then(content => {
+      console.log(content.data);
+      console.log('META', content.meta);
+    })
+  })
+}
+

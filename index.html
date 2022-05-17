@@ -16,28 +16,28 @@
     <!-- IMAGE CAROUSEL -->
 
     <header>
-    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active image-carousel" data-bs-interval="5000">
-            <img src="https://images.fineartamerica.com/images-medium-large-5/panorama-of-london-skyline-at-sunset-vladimir-zakharov.jpg" class="d-block w-100" alt="">
+      <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active image-carousel" data-bs-interval="5000">
+              <img src="https://wallpaperaccess.com/full/466320.jpg" class="d-block w-100 changeimage" alt="...">
+            </div>
+            <div class="carousel-item image-carousel">
+              <img src="https://wallpaperaccess.com/full/466379.jpg" class="d-block w-100 changeimage" alt="...">
+            </div>
+            <div class="carousel-item image-carousel">
+              <img src="https://wallpaperaccess.com/full/466357.jpg" class="d-block w-100 changeimage" alt="...">
+            </div>
           </div>
-          <div class="carousel-item image-carousel">
-            <img src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/london-skyline-panorama-at-sunset-cityscape-photography-stephan-grixti.jpg" class="d-block w-100" alt="">
-          </div>
-          <div class="carousel-item image-carousel">
-            <img src="https://images.unsplash.com/photo-1576197880565-36e96676b1a1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bG9uZG9uJTIwcGFub3JhbWF8ZW58MHx8MHx8&w=1000&q=80" class="d-block w-100" alt="">
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
-      </div>
-    </header>
+      </header>
 
     <main>
 
@@ -140,7 +140,13 @@
         <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
         <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
     
-        
+        <!-- Giphy -->
+
+        <form>
+          <label for="search">Search</label>
+          <input type="search" id="search">
+          <button id="gifSearch">Go</button>
+        </form>
         <!-- ADVICE SECTION -->
 
         <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
@@ -178,7 +184,7 @@
  
  <div id="attractions-carousel" class="carousel slide p-3">
      
-     <div class="carousel-inner attractions-posts">
+
 
     </div>
          <button class="carousel-control-prev" type="button" data-bs-target="#attractions-carousel" data-bs-slide="prev">
