@@ -1,53 +1,68 @@
 body {
-    text-align: center;
-   
+  text-align: center;
 }
 
 :root {
-    --london-red: #af4a4a;
-    --london-blue: #646e95;
-    --London-white: #efefef;
-    }
-    
-    
-    .image-carousel {
-        object-fit: cover;
-        height: 400px;
-        
-    }
-    
-    .london-blue {
-        color: var(--london-blue);
-    }
-    
-    .bg-london-blue {
-        background-color: var(--london-blue);
-    }
-    
-    .london-red {
-        color: var(--london-red);
-    }
-    
-    .bg-london-red {
-        background-color: var(--london-red);
-    }
-    
-    .nav-button {
-        background-color: var(--london-blue);
-        color: var(--London-white);
-    }
-    
-    .card-button {
-        background-color: var(--london-red);
-        color: var(--London-white);
-    }
-    
-    .main-card {
-        display: inline-flex;
-        
-    }
+  --london-red: #af4a4a;
+  --london-blue: #646e95;
+  --London-white: #efefef;
+}
 
-    .card-img-top {
-        height: 18rem;
-        object-fit: cover;
-    }
+.image-carousel {
+  object-fit: cover;
+  height: 400px;
+}
+
+.london-blue {
+  color: var(--london-blue);
+}
+
+.bg-london-blue {
+  background-color: var(--london-blue);
+}
+
+.london-red {
+  color: var(--london-red);
+}
+
+.bg-london-red {
+  background-color: var(--london-red);
+}
+
+.nav-button {
+  background-color: var(--london-blue);
+  color: var(--London-white);
+}
+
+.card-button {
+  background-color: var(--london-red);
+  color: var(--London-white);
+  position: absolute;
+  bottom: 5%;
+  left: 28%;
+}
+
+.main-card {
+  display: inline-flex;
+}
+
+.card-img-top {
+  height: 18rem;
+  object-fit: cover;
+}
+
+.card {
+  border: black solid 1px;
+  aspect-ratio: 1;
+  height: 300px;
+}
+
+.card-body {
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.slide-btn {
+  color: black;
+  font-size: 3rem;
+}
