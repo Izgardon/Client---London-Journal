@@ -94,6 +94,12 @@ These colours replicate the blue and red of English flag found often in associat
 
 - adding a modal for posting a new message about user's experience in London
 
+## Contribution guide
+
+## Bugs
+
+## Future features
+
 ## Licence
 
 [MIT licence](https://opensource.org/licenses/mit-license.php)
