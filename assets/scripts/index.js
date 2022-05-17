@@ -1,10 +1,7 @@
 /* import { postNewPost } from "./app.js"; */
 //Things that directly affect the DOM, event listeners etc
 
-const btnPost = document.querySelector(".button1");
-const generalTitle = document.querySelector("#general-title");
-const generalBody = document.querySelector("#general-body");
-const generalPosts = document.querySelector(".general-posts");
+const postBtns = document.querySelectorAll(".form-btn");
 const attractionsPosts = document.querySelector(".attractions-posts");
 const placesPosts = document.querySelector(".places-posts");
 
@@ -16,18 +13,21 @@ getAllPosts("places");
 
 //Event listeners
 
-btnPost.addEventListener("click", (e) => {
-  e.preventDefault();
-  let dataType = e.target.id;
+postBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  const postData = {
-    title: eval(`${dataType + "Title"}`).value,
-    body: eval(`${dataType + "Body"}`).value,
-  };
-  postNewPost(dataType, postData);
+    let dataType = e.target.id;
 
-  eval(`${dataType + "Title"}`).value = "";
-  eval(`${dataType + "Body"}`).value = "";
+    const postData = {
+      title: document.querySelector(`.${dataType}-title`).value,
+      body: document.querySelector(`.${dataType}-body`).value,
+    };
+    postNewPost(dataType, postData);
+
+    document.querySelector(`.${dataType}-title`).value = "";
+    document.querySelector(`.${dataType}-body`).value = "";
+  });
 });
 
 
@@ -68,7 +68,7 @@ function postNewPost(dataType, post) {
 function append(dataType, post) {
   let page = Math.ceil(post.id / 3);
   if (post.id % 3 == 1) {
-    eval(`${dataType}Posts`).insertAdjacentHTML(
+    eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
       "beforeend",
       `<div class="carousel-item ${
         page == 1 ? "active" : ""
@@ -76,7 +76,7 @@ function append(dataType, post) {
     );
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
-      ` <div class="card main-card m-3" id="${post.id} "style="width: 18rem;">
+      ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
                             
                     <div class="card-body">
                       <h5 class="card-title">${post.title}</h5>
@@ -89,7 +89,7 @@ function append(dataType, post) {
   } else {
     document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
       "beforeend",
-      ` <div class="card main-card m-3" id="${post.id} "style="width: 18rem;">
+      ` <div class="card main-card m-3" id="${dataType}-${post.id}" style="width: 18rem;">
                           
                   <div class="card-body">
                     <h5 class="card-title">${post.title}</h5>
@@ -102,6 +102,9 @@ function append(dataType, post) {
   }
 }
 
+
+
+=======
 //Giphy
 
 document.addEventListener("DOMContentLoaded", init);
@@ -120,3 +123,4 @@ function init() {
     })
   })
 }
+
