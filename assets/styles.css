@@ -76,6 +76,29 @@ body {
         }
       }
 
+
+.nav-button {
+  background-color: var(--london-blue);
+  color: var(--London-white);
+}
+
+.card-button {
+  background-color: var(--london-red);
+  color: var(--London-white);
+  position: absolute;
+  bottom: 5%;
+  left: 22%;
+}
+
+.main-card {
+  display: inline-flex;
+}
+
+.card-img-top {
+  height: 18rem;
+  object-fit: cover;
+}
+
       @media (min-width: 1200px) {
        
         .changeimage {
@@ -83,6 +106,7 @@ body {
             bottom: -65%;
         }
       }
+
 
       @media (max-width: 600px) { 
        
@@ -109,3 +133,5 @@ body {
   color: black;
   font-size: 3rem;
 }
+
+/* Form for posting */

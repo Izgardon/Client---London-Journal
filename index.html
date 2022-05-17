@@ -41,9 +41,97 @@
 
     <main>
 
+      <!-- Modals -->
+      
+      <!-- General modal -->
+      <div class="modal fade" id="form-general" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Add your own post here:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Title:</label>
+                  <input type="text" class="form-control general-title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control general-body" rows="5"  maxlength="200" required></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" id="general" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!--       Attractions modal-->     
+       <div class="modal fade" id="form-attractions" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Add your own post here:</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label">Title:</label>
+                  <input type="text" class="form-control attractions-title" required>
+                </div>
+                <div class="mb-3">
+                  <label for="message-text" class="col-form-label">Message:</label>
+                  <textarea class="form-control attractions-body" rows="5"  maxlength="200" required></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              
+              <button type="button" id="attractions" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+     <!--  Places Modal -->
+
+     <div class="modal fade" id="form-places" tabindex="-1" aria-labelledby="formModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" >Add your own post here:</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Title:</label>
+                <input type="text" class="form-control places-title" required>
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Message:</label>
+                <textarea class="form-control places-body" rows="5"  maxlength="200" required></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            
+            <button type="button" id="places" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
         <!-- TITLE SECTION -->
 
 <h1 class="london-red p-5">London Travel Title</h1>
+
 
     <!-- NAVIGATION SECTION -->
 
@@ -62,11 +150,9 @@
         <!-- ADVICE SECTION -->
 
         <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
-        <form action="">
-          <input type="text" id="general-title">
-          <input type="text" id="general-body">
-          <button class="button1" id="general">Add a post</button>
-        </form>
+
+        <button type="button" class="btn nav-button" data-bs-toggle="modal" data-bs-target="#form-general">Open modal</button>
+        
         
 
         <!-- Advice Carousel -->
@@ -92,10 +178,14 @@
  <!-- TOURIST ATTRACTIONS SECTION -->
 
  <h2 id="tourist-attractions" class="london-red p-5">Tourist Attractions</h2>
+ <button type="button" class="btn nav-button" data-bs-toggle="modal" data-bs-target="#form-attractions">Open modal</button>
 
  <!-- Attractions Carousel -->
  
  <div id="attractions-carousel" class="carousel slide p-3">
+  <div class="carousel-inner attractions-posts">
+
+  </div>
      
 
 
@@ -114,6 +204,7 @@
 <!-- RESTAURANTS SECTION -->
 
 <h2 id="restaurants" class="london-red p-5">Restaurants & Hotels</h2>
+<button type="button" class="btn nav-button" data-bs-toggle="modal" data-bs-target="#form-places">Open modal</button>
 
 <!-- Restaurants Carousel -->
 
