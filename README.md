@@ -38,10 +38,25 @@
 ## Process
 
 - Planning
+
   - Choosing a topic - London and travelling
-  - Creating a vision of our webpage, choosing colours:
+  - Creating a vision of our webpage
+
+    - Using Wireframes for visualisation:
+
+    <br>
+
+    <div align="center">
+
+    ![](https://i.ibb.co/L9q6HdT/Screenshot-2022-05-17-120959.png)
+
+    </div>
+
+  - Choosing colours:
 
 The main colours used in this project were:
+
+<div align="center">
 
 #646E95 = blue
 #AF4A4A = red
@@ -49,20 +64,31 @@ The main colours used in this project were:
 ![Blue colour](https://i.ibb.co/0C9wcM5/Screenshot-2022-05-17-095516.png)
 ![Red colour](https://i.ibb.co/vxYKHm1/Screenshot-real-2022-05-17-095719.png)
 
+</div>
+
 These colours replicate the blue and red of English flag found often in association of England's capital.
 
-- Creating 2 repos - server and client
-- Creating endpoints in server / Backend
-- Creating main page CSS and HTML
-- Discussing issues that we couldn't foresee : we need 2 modals - 1 for comments, 1 for making post, revisioning, rethinking the cards on our main page
-- deploying server repo (staging branch) to heroku
-- Focusing on detailed structure of our webpage (adding new cards to carousels)
+- Creating 2 repos - [server](https://github.com/alicekres/Lap-1-Portfolio-Project-Server) and [client](https://github.com/Izgardon/Lap-1-Portfolio-Project-Client)
+- Creating api endpoints in server / Backend setup
+- Creating main page initial structure with CSS and HTML
+- Discussing in more detail the cards structure and webpage functionality
+- Deploying server repo (staging branch) to [Heroku](https://dashboard.heroku.com/apps)
+- Focusing on Javascript functionality and detailed structure of our webpage (adding new cards to carousels)
+- Creating favicon:
+
+<div align="center">
+
+![London journal favicon](https://i.ibb.co/Hz2s6jp/favicon-32x32.png)
+
+</div>
 
 ## Wins
 
 - adding a new card dynamically to the carousel - screenshot
 
 ## Challenges
+
+- adding a modal for posting a new message about user's experience in London
 
 ## Licence
 
