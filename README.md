@@ -169,6 +169,7 @@ function append(dataType, post) {
 
 - Cannot PATCH/ regards to emojis
 - Gifs get called 2 x times instead of once upon pressing a button
+- exporting functions and using them in testing file causes the test run already beforehand calling
 
 ## Future features
 
