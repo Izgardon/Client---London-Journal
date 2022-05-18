@@ -312,3 +312,5 @@ function returnReplyModal(postData, dataType, postId) {
   
 `;
 }
+
+module.exports = { postNewPost, getAllPosts };
