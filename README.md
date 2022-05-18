@@ -159,11 +159,13 @@ function append(dataType, post) {
 
 </div>
 
-- Adding emojis
+- Making emojis interactive in such a may their count goes up and a user can't click on the same emoji straight away countless times
 
 ## Contribution guide
 
 ## Bugs
+
+- Cannot PATCH/ regards to emojis
 
 ## Future features
 
