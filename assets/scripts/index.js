@@ -29,7 +29,7 @@ postBtns.forEach((btn) => {
         reactions: [0, 0, 0],
         replies: [],
       };
-      clearAllPosts(dataType);
+
       postNewPost(dataType, postData);
 
       document.querySelector(`.${dataType}-title`).value = "";
@@ -64,9 +64,6 @@ function getAllPosts(dataType) {
       for (let i = allPostData.length; i >= 1; i--) {
         append(dataType, allPostData[i - 1], allPostData);
       }
-      /*  allPostData((post) => {
-        append(dataType, post);
-      }); */
     });
 }
 
@@ -82,8 +79,12 @@ function postNewPost(dataType, post) {
   };
   fetch(`http://localhost:3000/${dataType}`, options)
     .then((r) => r.json())
-    .then(getAllPosts(dataType))
     .catch(console.warn);
+
+  setTimeout(() => {
+    clearAllPosts(dataType);
+    getAllPosts(dataType);
+  }, 1);
 }
 
 //Function that deals with appending the posts to the correct carousel page
