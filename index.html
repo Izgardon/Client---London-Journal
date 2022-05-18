@@ -174,7 +174,20 @@
         <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
         <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
     
-        <!-- Giphy -->
+    <!-- Search Bar -->
+
+    <div class="search-wrapper">
+      <label for="site-search">Search Site</label>
+      <input type="search" id="site-search" data-search>
+    </div>
+    <div>
+      <template data-search-template>
+        <ul id="searchResults">
+          <li class="searchTitle"></li>
+          <li class="searchBody"></li>
+        </ul>
+      </template>
+    </div>
 
         
         <!-- ADVICE SECTION -->
