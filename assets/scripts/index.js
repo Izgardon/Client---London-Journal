@@ -2,10 +2,11 @@
 //Things that directly affect the DOM, event listeners etc
 
 const postBtns = document.querySelectorAll(".form-btn");
-const attractionsPosts = document.querySelector(".attractions-posts");
-const placesPosts = document.querySelector(".places-posts");
+
 const replyModalArea = document.querySelector(".modal-reply-area");
-const searchTemplate = document.querySelector("[data-search-template]")
+
+const searchBar = document.querySelector("#site-search");
+const searchButton = document.querySelector(".search-button");
 
 //Adding all posts that are on server on load
 
@@ -13,6 +14,7 @@ getAllPosts('general');
 getAllPosts('attractions');
 getAllPosts('places');
 
+let searchList = [];
 //Event listeners
 
 //New post modal
@@ -54,17 +56,48 @@ document.addEventListener('click', (e) => {
 
 //Search
 
+searchButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  searchHere();
+  let searchTerm = searchBar.value.toLowerCase();
+  let results = [];
 
-  fetch('http://localhost:3000/general')
-    .then((r) => r.json())
-    .then(data => {
-      console.log(data)
-      // card.map(card => {
-      //   const list = searchTemplate.content.cloneNode(true).children[0]
-      //   console.log(list)
-      })
-    // });
+  setTimeout(() => {
+    for (let i = 0; i < searchList.length; i++) {
+      if (searchList[i].toLowerCase().includes(searchTerm)) {
+        results.push(searchList[i]);
+      }
+    }
+  });
 
+  searchList = [];
+  console.log(results);
+});
+
+async function searchHere() {
+  try {
+    let responseG = await fetch("http://localhost:3000/general");
+    let generalData = await responseG.json();
+
+    generalData.forEach((post) => {
+      searchList.push(post.title);
+    });
+    let responseP = await fetch("http://localhost:3000/places");
+    let placesData = await responseP.json();
+
+    generalData.forEach((post) => {
+      searchList.push(post.title);
+    });
+    let responseA = await fetch("http://localhost:3000/attractions");
+    let attractionsData = await responseA.json();
+
+    generalData.forEach((post) => {
+      searchList.push(post.title);
+    });
+  } catch {
+    console.log(error);
+  }
+}
 
 //Getting all posts on load
 
