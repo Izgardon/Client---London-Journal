@@ -9,16 +9,16 @@ const searchTemplate = document.querySelector("[data-search-template]")
 
 //Adding all posts that are on server on load
 
-getAllPosts("general");
-getAllPosts("attractions");
-getAllPosts("places");
+getAllPosts('general');
+getAllPosts('attractions');
+getAllPosts('places');
 
 //Event listeners
 
 //New post modal
 
 postBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
+  btn.addEventListener('click', (e) => {
     e.preventDefault();
     let dataType = e.target.id;
     let title = document.querySelector(`.${dataType}-title`).value;
@@ -33,8 +33,8 @@ postBtns.forEach((btn) => {
 
       postNewPost(dataType, postData);
 
-      document.querySelector(`.${dataType}-title`).value = "";
-      document.querySelector(`.${dataType}-body`).value = "";
+      document.querySelector(`.${dataType}-title`).value = '';
+      document.querySelector(`.${dataType}-body`).value = '';
     } else {
       setTimeout(() => {
         document.querySelector(`#${dataType}-button`).click();
@@ -45,7 +45,7 @@ postBtns.forEach((btn) => {
 
 //Reply Modals
 
-document.addEventListener("click", (e) => {
+document.addEventListener('click', (e) => {
   createReplyModal(e);
   emojiCounter(e);
 });
@@ -69,7 +69,7 @@ document.addEventListener("click", (e) => {
 //Getting all posts on load
 
 function clearAllPosts(dataType) {
-  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = "";
+  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = '';
 }
 
 function getAllPosts(dataType) {
@@ -86,10 +86,10 @@ function getAllPosts(dataType) {
 
 function postNewPost(dataType, post) {
   const options = {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(post),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   fetch(`http://localhost:3000/${dataType}`, options)
@@ -112,41 +112,41 @@ function append(dataType, post, allData) {
 
   if (postNumber % 3 == 1) {
     eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `<div class="carousel-item ${
-        page == 1 ? "active" : ""
+        page == 1 ? 'active' : ''
       }  ${dataType}-${page}"></div>`
     );
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
   }
 
   //Else statement deals with just adding new posts to current carousel page
   else {
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
   }
 }
 
 //Adding emoji counter
 
 function emojiCounter(e) {
-  if (e.target.classList.contains("reaction-button")) {
-    let dataType = e.target.id.split("*")[0];
-    let postId = e.target.id.split("*")[1];
-    let emojiId = e.target.id.split("*")[2];
+  if (e.target.classList.contains('reaction-button')) {
+    let dataType = e.target.id.split('*')[0];
+    let postId = e.target.id.split('*')[1];
+    let emojiId = e.target.id.split('*')[2];
 
     document.getElementById(e.target.id).childNodes[1].textContent++;
 
     const options = {
-      method: "PATCH",
+      method: 'PATCH',
       body: JSON.stringify({
         reactions: emojiId,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-type': 'application/json; charset=UTF-8',
       },
     };
 
@@ -157,33 +157,33 @@ function emojiCounter(e) {
 //Adding the reply modal
 
 function createReplyModal(e) {
-  if (e.target.classList.contains("reply-button")) {
-    replyModalArea.innerHTML = "";
+  if (e.target.classList.contains('reply-button')) {
+    replyModalArea.innerHTML = '';
 
-    let dataType = e.target.id.split("-")[0];
-    let postId = e.target.id.split("-")[1];
+    let dataType = e.target.id.split('-')[0];
+    let postId = e.target.id.split('-')[1];
 
     fetch(`http://localhost:3000/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
-          "afterbegin",
+          'afterbegin',
           returnReplyModal(postData, dataType, postId)
         );
         postData.replies.forEach((reply) => {
           document
-            .querySelector(".modal-reply-body")
+            .querySelector('.modal-reply-body')
             .insertAdjacentHTML(
-              "afterbegin",
+              'afterbegin',
               `<div class="reply">${reply}</div>`
             );
         });
         addingGifs(dataType, postId);
         document
           .querySelector(`#${dataType}-${postId}-reply-button`)
-          .addEventListener("click", (e) => {
+          .addEventListener('click', (e) => {
             sendReply(e);
-            document.querySelector(".replyMessageBox").value = "";
+            document.querySelector('.replyMessageBox').value = '';
           });
       });
   }
@@ -191,31 +191,31 @@ function createReplyModal(e) {
 
 //Function for sending replies
 
-function sendReply(e, isGif = "no", gifDataType, gifPostId) {
-  let reply = "";
-  let dataType = "";
-  let postId = "";
-  if (isGif == "no") {
-    dataType = e.target.id.split("-")[0];
-    postId = e.target.id.split("-")[1];
+function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
+  let reply = '';
+  let dataType = '';
+  let postId = '';
+  if (isGif == 'no') {
+    dataType = e.target.id.split('-')[0];
+    postId = e.target.id.split('-')[1];
 
     reply = document.querySelector(`#${dataType}-${postId}-reply-box`).value;
-  } else if (isGif == "yes") {
+  } else if (isGif == 'yes') {
     reply = `<img src="${e.target.src}" alt="Cool Gif">`;
     dataType = gifDataType;
     postId = gifPostId;
   }
 
   document
-    .querySelector(".modal-reply-body")
-    .insertAdjacentHTML("beforeend", `<div class="reply">${reply}</div>`);
+    .querySelector('.modal-reply-body')
+    .insertAdjacentHTML('beforeend', `<div class="reply">${reply}</div>`);
   const options = {
-    method: "PATCH",
+    method: 'PATCH',
     body: JSON.stringify({
       reply: reply,
     }),
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      'Content-type': 'application/json; charset=UTF-8',
     },
   };
 
@@ -234,28 +234,30 @@ function gifReply(e, dataType, id, displayGiphy, gifSearchBox, event) {
 }
 
 //Giphy
-const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5";
+const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
 
 function addingGifs(dataType, postId) {
+
   let gifSearch = document.getElementById("gifSearch");
   let displayGiphy = document.querySelector(".displayGiphy");
   let gifSearchBox = document.querySelector(".gifSearchBox");
   gifSearch.addEventListener("click", (e) => {
     e.preventDefault();
+
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
-    let str = document.getElementById("search").value.trim();
+    let str = document.getElementById('search').value.trim();
     url = url.concat(str);
 
     fetch(url)
       .then((resp) => resp.json())
       .then((content) => {
         content.data.forEach((data) => {
-          let fig = document.createElement("figure");
-          let img = document.createElement("img");
+          let fig = document.createElement('figure');
+          let img = document.createElement('img');
           img.src = data.images.fixed_height_small.url;
-          img.alt = "gif";
+          img.alt = 'gif';
           fig.appendChild(img);
-          displayGiphy.insertAdjacentElement("afterbegin", fig);
+          displayGiphy.insertAdjacentElement('afterbegin', fig);
         });
       })
       .catch((err) => {
@@ -329,3 +331,6 @@ function returnReplyModal(postData, dataType, postId) {
   
 `;
 }
+
+module.exports = postNewPost;
+module.exports = getAllPosts;
