@@ -1,10 +1,11 @@
 /* import { postNewPost } from "./app.js"; */
 //Things that directly affect the DOM, event listeners etc
 
-const postBtns = document.querySelectorAll('.form-btn');
-const attractionsPosts = document.querySelector('.attractions-posts');
-const placesPosts = document.querySelector('.places-posts');
-const replyModalArea = document.querySelector('.modal-reply-area');
+const postBtns = document.querySelectorAll(".form-btn");
+const attractionsPosts = document.querySelector(".attractions-posts");
+const placesPosts = document.querySelector(".places-posts");
+const replyModalArea = document.querySelector(".modal-reply-area");
+const searchTemplate = document.querySelector("[data-search-template]")
 
 //Adding all posts that are on server on load
 
@@ -50,6 +51,20 @@ document.addEventListener('click', (e) => {
 });
 
 //Functions ---------------------------------------------------------------------------
+
+//Search
+
+
+  fetch('http://localhost:3000/general')
+    .then((r) => r.json())
+    .then(data => {
+      console.log(data)
+      // card.map(card => {
+      //   const list = searchTemplate.content.cloneNode(true).children[0]
+      //   console.log(list)
+      })
+    // });
+
 
 //Getting all posts on load
 
@@ -209,9 +224,12 @@ function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
 
 //Sending gifs (calls the sendReply function and modifies it for gifs)
 
-function gifReply(e, dataType, id) {
-  if (e.target.getAttribute('alt') == 'gif') {
-    sendReply(e, 'yes', dataType, id);
+function gifReply(e, dataType, id, displayGiphy, gifSearchBox, event) {
+  if (e.target.getAttribute("alt") == "gif") {
+    sendReply(e, "yes", dataType, id);
+    displayGiphy.innerHTML = "";
+    gifSearchBox.value = "";
+    document.removeEventListener("click", event);
   }
 }
 
@@ -219,11 +237,13 @@ function gifReply(e, dataType, id) {
 const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
 
 function addingGifs(dataType, postId) {
-  let gifSearch = document.getElementById('gifSearch');
-  let displayGiphy = document.querySelector('.displayGiphy');
-  let gifSearchBox = document.querySelector('.gifSearchBox');
-  gifSearch.addEventListener('click', (e) => {
-    /* e.preventDefault(); */
+
+  let gifSearch = document.getElementById("gifSearch");
+  let displayGiphy = document.querySelector(".displayGiphy");
+  let gifSearchBox = document.querySelector(".gifSearchBox");
+  gifSearch.addEventListener("click", (e) => {
+    e.preventDefault();
+
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
     let str = document.getElementById('search').value.trim();
     url = url.concat(str);
@@ -243,10 +263,9 @@ function addingGifs(dataType, postId) {
       .catch((err) => {
         console.error(err);
       });
-    document.addEventListener('click', (e) => {
-      gifReply(e, dataType, postId);
-      displayGiphy.innerHTML = '';
-      gifSearchBox.value = '';
+
+    document.addEventListener("click", function test1(e) {
+      gifReply(e, dataType, postId, displayGiphy, gifSearchBox, test1);
     });
   });
 }
@@ -300,10 +319,10 @@ function returnReplyModal(postData, dataType, postId) {
   
   <label for="reply-text" class="col-form-label"></label>
   <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Message" required></textarea>
-  <form>
+        <form onkeydown="return event.key != 'Enter';">
           <label for="search">Search</label>
-          <input class= "gifSearchBox" type="search" id="search">
-          <div id="gifSearch">Go</div>
+          <input  class= "gifSearchBox" type="search" id="search">
+          <button type="button" id="gifSearch">Go</button>
         </form>
       
           <div class="displayGiphy"></div>
