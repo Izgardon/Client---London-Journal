@@ -22,6 +22,12 @@ describe('index.html', () => {
     const favicon = document.querySelector('.favicon');
     expect(favicon.rel).toBe('icon');
   });
+
+  test('html body has h1 with London Travel Title', () => {
+    document.documentElement.innerHTML = html.toString();
+    const h1 = document.querySelector('h1');
+    expect(h1).toEqual('h1');
+  });
 });
 
 describe('getAllPosts', () => {

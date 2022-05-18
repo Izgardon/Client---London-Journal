@@ -21,7 +21,7 @@
 ## Installation & usage
 
 - Open the webpage here: [London journal](https://journal-to-end-all-journals.herokuapp.com/) OR
-- Clone or download code and run npm dev
+- Clone or download code and npm run dev
 
 ## Technologies
 
