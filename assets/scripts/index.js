@@ -23,6 +23,7 @@ postBtns.forEach((btn) => {
     const postData = {
       title: document.querySelector(`.${dataType}-title`).value,
       body: document.querySelector(`.${dataType}-body`).value,
+      reactions: [0,0,0],
     };
     postNewPost(dataType, postData);
 
@@ -85,6 +86,27 @@ function append(dataType, post) {
                       <h5 class="card-title">${post.title}</h5>
                       <p class="card-text">${post.body}</p>
                       <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+
+                      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*1">
+                      &#127913
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[0]}
+                      </span>
+                      </button>
+
+                      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*2">
+                      &#128077
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[1]}
+                      </span>
+                      </button>
+
+                      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*3">
+                      &#128293
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[2]}
+                      </span>
+                      </button>
                     </div>
               </div>
             `
@@ -101,6 +123,27 @@ function append(dataType, post) {
                     <h5 class="card-title">${post.title}</h5>
                     <p class="card-text">${post.body}</p>
                     <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+
+                    <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*1">
+                      &#127913
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[0]}
+                      </span>
+                      </button>
+
+                      <button type="button" class="btn position-relative reaction-button"id="${dataType}*${post.id}*2">
+                      &#128077
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[1]}
+                      </span>
+                      </button>
+
+                      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*3">
+                      &#128293
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+                      ${post.reactions[2]}
+                      </span>
+                      </button>
                   </div>
             </div>
           `
@@ -181,11 +224,38 @@ function init() {
     })
   })
 
-      .then((resp) => resp.json())
-      .then((content) => {
-        console.log(content.data);
-        console.log("META", content.meta);
-      });
-  });
+     
+  };
+
+
+//Emoji reactions
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("reaction-button")) {
+    
+  
+   
+
+    let dataType = e.target.id.split("*")[0];
+    let postId = e.target.id.split("*")[1];
+    let emojiId = e.target.id.split("*")[2];
+
+document.getElementById(e.target.id).childNodes[1].textContent++
+
+    const options = {
+      method: 'PATCH',
+      body: JSON.stringify({
+        reactions: emojiId,
+      }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+  }
+
+    fetch(`http://localhost:3000/${dataType}/${postId}`, options)
+ 
+
+    
 
 }
+  })
