@@ -86,9 +86,56 @@ These colours replicate the blue and red of English flag found often in associat
 
 - adding a new post/card dynamically to the correct carousel section
 
-<br>
+```
 
-![code for adding card to right carousel page](https://i.ibb.co/pQc1VLq/Screenshot-2022-05-17-140739.png)
+//Function that deals with appending the posts to the correct carousel page
+
+function append(dataType, post) {
+  let page = Math.ceil(post.id / 3);
+
+  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
+
+  if (post.id % 3 == 1) {
+    eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
+      'beforeend',
+      `<div class="carousel-item ${
+        page == 1 ? 'active' : ''
+      }  ${dataType}-${page}"></div>`
+    );
+    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
+      'beforeend',
+      ` <div class="card main-card m-3"  style="width: 18rem;">
+
+                    <div class="card-body">
+                      <h5 class="card-title">${post.title}</h5>
+                      <p class="card-text">${post.body}</p>
+                      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+                    </div>
+              </div>
+            `
+    );
+  }
+
+  //Else statement deals with just adding new posts to current carousel page
+  else {
+    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
+      'beforeend',
+      ` <div class="card main-card m-3"  style="width: 18rem;">
+
+                  <div class="card-body">
+                    <h5 class="card-title">${post.title}</h5>
+                    <p class="card-text">${post.body}</p>
+                    <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+                  </div>
+            </div>
+          `
+    );
+  }
+}
+
+```
+
+<br>
 
 ## Challenges
 
