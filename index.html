@@ -138,7 +138,7 @@
 
     
       <div class="modal fade" id="reply-modal"  tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" id="reply-modal-container">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" id="reply-modal-container">
           <div class="modal-content modal-reply-area">
             
       <!-- <div class="modal-header">
@@ -175,7 +175,21 @@
         <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
         <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
     
-        <!-- Giphy -->
+    <!-- Search Bar -->
+
+    <div class="search-wrapper">
+      <label for="site-search">Search Site</label>
+      <input type="search" id="site-search" data-search>
+      <button class="search-button" type="button">Search Here</button>
+    </div>
+    <div>
+      <template data-search-template>
+        <ul id="searchResults">
+          <li class="searchTitle"></li>
+          <li class="searchBody"></li>
+        </ul>
+      </template>
+    </div>
 
         
         <!-- ADVICE SECTION -->
