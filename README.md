@@ -161,6 +161,8 @@ function append(dataType, post) {
 
 - Making emojis interactive in such a may their count goes up and a user can't click on the same emoji straight away countless times
 
+- Adding search bar and being able to find a right card / topic among 3 different carousels full of their own array of cards
+
 ## Contribution guide
 
 ## Bugs
