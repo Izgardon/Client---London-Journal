@@ -168,6 +168,7 @@ function append(dataType, post) {
 ## Bugs
 
 - Cannot PATCH/ regards to emojis
+- Gifs get called 2 x times instead of once upon pressing a button
 
 ## Future features
 

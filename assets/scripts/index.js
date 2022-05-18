@@ -247,3 +247,7 @@ document.addEventListener('click', (e) => {
     fetch(`http://localhost:3000/${dataType}/${postId}`, options);
   }
 });
+
+module.exports = postNewPost;
+module.exports = getAllPosts;
+// module.exports = append;
