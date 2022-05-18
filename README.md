@@ -92,7 +92,7 @@ These colours replicate the blue and red of English flag found often in associat
 
 ## Wins
 
-- adding a new post/card dynamically to the correct carousel section
+- managed to add a new post/card dynamically to the correct carousel section
 
 ```
 
@@ -143,12 +143,15 @@ function append(dataType, post) {
 
 ```
 
+- learnt how to fetch gifs with the right APIkey and getting it working from different servers
+
+- Adding a modal for posting a new message about user's experience in London
+
 <br>
 
 ## Challenges
 
-- Adding a modal for posting a new message about user's experience in London
-- Fetching gifs with the right APIkey and getting it working from different servers
+- Adding APIKey for gifs in heroku and using APIKey manually in developement branches where we were still working at
 
 <div align="center">
 
