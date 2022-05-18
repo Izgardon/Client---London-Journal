@@ -84,7 +84,7 @@ These colours replicate the blue and red of English flag found often in associat
 
 ## Wins
 
-- adding a new post dynamically to the correct carousel section
+- adding a new post/card dynamically to the correct carousel section
 
 <br>
 
