@@ -5,6 +5,7 @@ const postBtns = document.querySelectorAll(".form-btn");
 const attractionsPosts = document.querySelector(".attractions-posts");
 const placesPosts = document.querySelector(".places-posts");
 const replyModalArea = document.querySelector(".modal-reply-area");
+const searchTemplate = document.querySelector("[data-search-template]")
 
 //Adding all posts that are on server on load
 
@@ -50,6 +51,20 @@ document.addEventListener("click", (e) => {
 });
 
 //Functions ---------------------------------------------------------------------------
+
+//Search
+
+
+  fetch('http://localhost:3000/general')
+    .then((r) => r.json())
+    .then(data => {
+      console.log(data)
+      // card.map(card => {
+      //   const list = searchTemplate.content.cloneNode(true).children[0]
+      //   console.log(list)
+      })
+    // });
+
 
 //Getting all posts on load
 
