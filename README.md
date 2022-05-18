@@ -82,6 +82,14 @@ These colours replicate the blue and red of English flag found often in associat
 
 </div>
 
+- tackling coding challenges
+
+<br>
+
+---
+
+<br>
+
 ## Wins
 
 - adding a new post/card dynamically to the correct carousel section
@@ -139,7 +147,16 @@ function append(dataType, post) {
 
 ## Challenges
 
-- adding a modal for posting a new message about user's experience in London
+- Adding a modal for posting a new message about user's experience in London
+- Fetching gifs with the right APIkey and getting it working from different servers
+
+<div align="center">
+
+![London gif](https://media2.giphy.com/media/jRHOfOfg4vCYkX7sFE/giphy.gif?cid=ecf05e47s480dj5gfl9sdthlpas6zfxx89vxb24vy716j4ji&rid=giphy.gif&ct=g)
+
+</div>
+
+- Adding emojis
 
 ## Contribution guide
 
