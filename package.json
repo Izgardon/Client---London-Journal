@@ -8,6 +8,12 @@
     "coverage": "jest --coverage",
     "dev": "python -m http.server"
   },
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./_tests_/setupJest.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Izgardon/Lap-1-Portfolio-Project-Client.git"
@@ -21,7 +27,8 @@
   "homepage": "https://github.com/Izgardon/Lap-1-Portfolio-Project-Client#readme",
   "devDependencies": {
     "jest": "^28.1.0",
-    "jest-environment-jsdom": "^28.1.0"
+    "jest-environment-jsdom": "^28.1.0",
+    "jest-fetch-mock": "^3.0.3"
   },
   "type": "module"
 }
