@@ -1,24 +1,26 @@
-/* import { postNewPost } from "./app.js"; */
-//Things that directly affect the DOM, event listeners etc
+//Query selectors
 
 const postBtns = document.querySelectorAll(".form-btn");
-const attractionsPosts = document.querySelector(".attractions-posts");
-const placesPosts = document.querySelector(".places-posts");
+
 const replyModalArea = document.querySelector(".modal-reply-area");
-const searchTemplate = document.querySelector("[data-search-template]")
+
+const searchBar = document.querySelector("#site-search");
+const searchButton = document.querySelector(".search-button");
 
 //Adding all posts that are on server on load
 
-getAllPosts('general');
-getAllPosts('attractions');
-getAllPosts('places');
+getAllPosts("general");
+getAllPosts("attractions");
+getAllPosts("places");
 
-//Event listeners
+//Search list for access anywhere in script
 
-//New post modal
+//Event listeners -----------------------------------------------------------------------------------------------------
+
+//Adding individual buttons for each new post modal to submit a new post via a form - it takes the class name to make it universal
 
 postBtns.forEach((btn) => {
-  btn.addEventListener('click', (e) => {
+  btn.addEventListener("click", (e) => {
     e.preventDefault();
     let dataType = e.target.id;
     let title = document.querySelector(`.${dataType}-title`).value;
@@ -33,8 +35,8 @@ postBtns.forEach((btn) => {
 
       postNewPost(dataType, postData);
 
-      document.querySelector(`.${dataType}-title`).value = '';
-      document.querySelector(`.${dataType}-body`).value = '';
+      document.querySelector(`.${dataType}-title`).value = "";
+      document.querySelector(`.${dataType}-body`).value = "";
     } else {
       setTimeout(() => {
         document.querySelector(`#${dataType}-button`).click();
@@ -45,31 +47,80 @@ postBtns.forEach((btn) => {
 
 //Reply Modals
 
-document.addEventListener('click', (e) => {
+document.addEventListener("click", (e) => {
   createReplyModal(e);
   emojiCounter(e);
+  searchAppend(e);
 });
 
 //Functions ---------------------------------------------------------------------------
 
-//Search
+//Search bar
 
+//This function appends the items that match the seach criteria into the new search
 
-  fetch('http://localhost:3000/general')
-    .then((r) => r.json())
-    .then(data => {
-      console.log(data)
-      // card.map(card => {
-      //   const list = searchTemplate.content.cloneNode(true).children[0]
-      //   console.log(list)
-      })
-    // });
+function searchAppend(e) {
+  if (e.target.classList.contains("search-button")) {
+    e.preventDefault();
 
+    let searchTerm = searchBar.value.toLowerCase();
+    let results = [];
+    let searchList = [];
+
+    clearAllPosts("search");
+    searchData(searchList);
+
+    setTimeout(() => {
+      for (let i = searchList.length - 1; i >= 0; i--) {
+        if (searchList[i].title.toLowerCase().includes(searchTerm)) {
+          results.push(searchList[i]);
+        }
+      }
+
+      searchList = [];
+
+      results.forEach((result) =>
+        append(
+          "search",
+          result,
+          results,
+          results.length - 1 - results.indexOf(result)
+        )
+      );
+    }, 100);
+  }
+}
+
+//This Async function collects all the data from all our data sets and pushes it into one array
+
+async function searchData(searchList) {
+  try {
+    let responseG = await fetch("http://localhost:3000/general");
+    let generalData = await responseG.json();
+    generalData.forEach((post) => {
+      searchList.push(post);
+    });
+    let responseP = await fetch("http://localhost:3000/places");
+    let placesData = await responseP.json();
+
+    placesData.forEach((post) => {
+      searchList.push(post);
+    });
+    let responseA = await fetch("http://localhost:3000/attractions");
+    let attractionsData = await responseA.json();
+
+    attractionsData.forEach((post) => {
+      searchList.push(post);
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 //Getting all posts on load
 
 function clearAllPosts(dataType) {
-  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = '';
+  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = "";
 }
 
 function getAllPosts(dataType) {
@@ -77,7 +128,12 @@ function getAllPosts(dataType) {
     .then((r) => r.json())
     .then((allPostData) => {
       for (let i = allPostData.length; i >= 1; i--) {
-        append(dataType, allPostData[i - 1], allPostData);
+        append(
+          dataType,
+          allPostData[i - 1],
+          allPostData,
+          allPostData.indexOf(allPostData[i - 1])
+        );
       }
     });
 }
@@ -86,10 +142,10 @@ function getAllPosts(dataType) {
 
 function postNewPost(dataType, post) {
   const options = {
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(post),
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   fetch(`http://localhost:3000/${dataType}`, options)
@@ -99,54 +155,57 @@ function postNewPost(dataType, post) {
   setTimeout(() => {
     clearAllPosts(dataType);
     getAllPosts(dataType);
-  }, 1);
+  }, 100);
 }
 
 //Function that deals with appending the posts to the correct carousel page
 
-function append(dataType, post, allData) {
-  let postNumber = allData.length + 1 - post.id;
+function append(dataType, post, allData, position) {
+  let postNumber = allData.length + 1 - `${position + 1}`;
+
   let page = Math.ceil(postNumber / 3);
 
   //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
 
   if (postNumber % 3 == 1) {
-    eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
-      'beforeend',
-      `<div class="carousel-item ${
-        page == 1 ? 'active' : ''
-      }  ${dataType}-${page}"></div>`
-    );
+    document
+      .querySelector(`.${dataType}-posts`)
+      .insertAdjacentHTML(
+        "beforeend",
+        `<div class="carousel-item ${
+          page == 1 ? "active" : ""
+        }  ${dataType}-${page}"></div>`
+      );
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
   }
 
   //Else statement deals with just adding new posts to current carousel page
   else {
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
   }
 }
 
 //Adding emoji counter
 
 function emojiCounter(e) {
-  if (e.target.classList.contains('reaction-button')) {
-    let dataType = e.target.id.split('*')[0];
-    let postId = e.target.id.split('*')[1];
-    let emojiId = e.target.id.split('*')[2];
+  if (e.target.classList.contains("reaction-button")) {
+    let dataType = e.target.id.split("*")[0];
+    let postId = e.target.id.split("*")[1];
+    let emojiId = e.target.id.split("*")[2];
 
     document.getElementById(e.target.id).childNodes[1].textContent++;
 
     const options = {
-      method: 'PATCH',
+      method: "PATCH",
       body: JSON.stringify({
         reactions: emojiId,
       }),
       headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+        "Content-type": "application/json; charset=UTF-8",
       },
     };
 
@@ -157,65 +216,65 @@ function emojiCounter(e) {
 //Adding the reply modal
 
 function createReplyModal(e) {
-  if (e.target.classList.contains('reply-button')) {
-    replyModalArea.innerHTML = '';
+  if (e.target.classList.contains("reply-button")) {
+    replyModalArea.innerHTML = "";
 
-    let dataType = e.target.id.split('-')[0];
-    let postId = e.target.id.split('-')[1];
+    let dataType = e.target.id.split("-")[0];
+    let postId = e.target.id.split("-")[1];
 
     fetch(`http://localhost:3000/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
-          'afterbegin',
+          "afterbegin",
           returnReplyModal(postData, dataType, postId)
         );
         postData.replies.forEach((reply) => {
           document
-            .querySelector('.modal-reply-body')
+            .querySelector(".modal-reply-body")
             .insertAdjacentHTML(
-              'afterbegin',
+              "afterbegin",
               `<div class="reply">${reply}</div>`
             );
         });
         addingGifs(dataType, postId);
         document
           .querySelector(`#${dataType}-${postId}-reply-button`)
-          .addEventListener('click', (e) => {
+          .addEventListener("click", (e) => {
             sendReply(e);
-            document.querySelector('.replyMessageBox').value = '';
+            document.querySelector(".replyMessageBox").value = "";
           });
       });
   }
 }
 
-//Function for sending replies
+//Function for sending replies ------------------------------------------------------------------------
 
-function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
-  let reply = '';
-  let dataType = '';
-  let postId = '';
-  if (isGif == 'no') {
-    dataType = e.target.id.split('-')[0];
-    postId = e.target.id.split('-')[1];
+function sendReply(e, isGif = "no", gifDataType, gifPostId) {
+  let reply = "";
+  let dataType = "";
+  let postId = "";
+  if (isGif == "no") {
+    dataType = e.target.id.split("-")[0];
+    postId = e.target.id.split("-")[1];
 
     reply = document.querySelector(`#${dataType}-${postId}-reply-box`).value;
-  } else if (isGif == 'yes') {
+  } else if (isGif == "yes") {
     reply = `<img src="${e.target.src}" alt="Cool Gif">`;
     dataType = gifDataType;
     postId = gifPostId;
   }
 
   document
-    .querySelector('.modal-reply-body')
-    .insertAdjacentHTML('beforeend', `<div class="reply">${reply}</div>`);
+    .querySelector(".modal-reply-body")
+    .insertAdjacentHTML("beforeend", `<div class="reply">${reply}</div>`);
   const options = {
-    method: 'PATCH',
+    method: "PATCH",
     body: JSON.stringify({
       reply: reply,
     }),
     headers: {
-      'Content-type': 'application/json; charset=UTF-8',
+      "Content-type": "application/json; charset=UTF-8",
     },
   };
 
@@ -224,20 +283,19 @@ function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
 
 //Sending gifs (calls the sendReply function and modifies it for gifs)
 
-function gifReply(e, dataType, id, displayGiphy, gifSearchBox, event) {
+function gifReply(e, dataType, id, displayGiphy, gifSearchBox, gifSelector) {
   if (e.target.getAttribute("alt") == "gif") {
     sendReply(e, "yes", dataType, id);
     displayGiphy.innerHTML = "";
     gifSearchBox.value = "";
-    document.removeEventListener("click", event);
+    document.removeEventListener("click", gifSelector);
   }
 }
 
 //Giphy
-const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
+const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5";
 
 function addingGifs(dataType, postId) {
-
   let gifSearch = document.getElementById("gifSearch");
   let displayGiphy = document.querySelector(".displayGiphy");
   let gifSearchBox = document.querySelector(".gifSearchBox");
@@ -245,27 +303,27 @@ function addingGifs(dataType, postId) {
     e.preventDefault();
 
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
-    let str = document.getElementById('search').value.trim();
+    let str = document.getElementById("search").value.trim();
     url = url.concat(str);
 
     fetch(url)
       .then((resp) => resp.json())
       .then((content) => {
         content.data.forEach((data) => {
-          let fig = document.createElement('figure');
-          let img = document.createElement('img');
+          let fig = document.createElement("figure");
+          let img = document.createElement("img");
           img.src = data.images.fixed_height_small.url;
-          img.alt = 'gif';
+          img.alt = "gif";
           fig.appendChild(img);
-          displayGiphy.insertAdjacentElement('afterbegin', fig);
+          displayGiphy.insertAdjacentElement("afterbegin", fig);
         });
       })
       .catch((err) => {
         console.error(err);
       });
 
-    document.addEventListener("click", function test1(e) {
-      gifReply(e, dataType, postId, displayGiphy, gifSearchBox, test1);
+    document.addEventListener("click", function gifSelector(e) {
+      gifReply(e, dataType, postId, displayGiphy, gifSearchBox, gifSelector);
     });
   });
 }
@@ -278,30 +336,37 @@ function returnPost(dataType, post) {
   return ` <div class="card main-card m-3"  style="width: 18rem;">
                             
     <div class="card-body">
+
+    <div class="card-post">
       <h5 class="card-title">${post.title}</h5>
       <p class="card-text">${post.body}</p>
-      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
 
-      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*1">
+      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+    </div>
+
+    <div class="card-reactions">
+      <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*1">
+
       &#127913
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[0]}
       </span>
       </button>
 
-      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*2">
+      <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*2">
       &#128077
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[1]}
       </span>
       </button>
 
-      <button type="button" class="btn position-relative reaction-button" id="${dataType}*${post.id}*3">
+      <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*3">
       &#128293
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[2]}
       </span>
       </button>
+    </div>
     </div>
 </div>
 `;
@@ -313,24 +378,31 @@ function returnReplyModal(postData, dataType, postId) {
     <h5 class="modal-title" >${postData.title}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
+  <h5 class="reply-modal-title">Original Post:</h5>
   <div class="modal-body-post">${postData.body}</div>
+  <h5 class="reply-modal-title">Replies:</h5>
   <div class="modal-body modal-reply-body">
-    </div>
-  
+  </div>
   <label for="reply-text" class="col-form-label"></label>
   <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Message" required></textarea>
-        <form onkeydown="return event.key != 'Enter';">
-          <label for="search">Search</label>
-          <input  class= "gifSearchBox" type="search" id="search">
-          <button type="button" id="gifSearch">Go</button>
-        </form>
-      
-          <div class="displayGiphy"></div>
+
+  <form onkeydown="return event.key != 'Enter';">
+  <label for="search">Search</label>
+  <input class= "gifSearchBox" type="search" id="search">
+  <div id="gifSearch">Go</div>
+  </form>
+  
+  <div class="displayGiphy"></div>
+  <form>
 
   <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button">Send reply</button>
+  </form>
+  <div class="modal-footer">
+  
+  </div>
   
 `;
 }
 
-module.exports = postNewPost;
-module.exports = getAllPosts;
+/* module.exports = postNewPost;
+module.exports = getAllPosts; */
