@@ -405,5 +405,8 @@ function returnReplyModal(postData, dataType, postId) {
 `;
 }
 
-/* module.exports = postNewPost;
-module.exports = getAllPosts; */
+module.exports = postNewPost;
+module.exports = getAllPosts;
+module.exports = returnPost;
+module.exports = returnReplyModal;
+// module.exports = append;
