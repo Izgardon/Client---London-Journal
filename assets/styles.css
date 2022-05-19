@@ -15,6 +15,12 @@ h5 {
   margin: 0px;
 }
 
+h2 {
+  padding: 3rem;
+  padding-top: 6rem;
+  margin-top: -3rem;
+}
+
 :root {
   --london-red: rgba(226, 35, 35, 0.8);
   --london-blue: rgba(10, 10, 70, 0.9);
@@ -100,7 +106,7 @@ h5 {
 }
 
 .card-body {
-  display: inline-flex;
+  display: flex;
   padding: 1rem 8px;
   text-align: center;
   overflow: hidden;
@@ -109,10 +115,6 @@ h5 {
 .card-post {
   padding-right: 8px;
   min-width: 13rem;
-}
-
-.card-title {
-  word-wrap: ;
 }
 
 .card-text {
@@ -193,10 +195,19 @@ h5 {
 
 .send-reply-button {
   margin: 1rem 0rem;
+  background-color: var(--london-blue);
+  color: var(--london-white);
+}
+
+.send-post-button {
+  background-color: var(--london-blue);
+  color: var(--london-white);
 }
 
 .gif-button {
   padding: 0.1rem;
+  background-color: var(--london-blue);
+  color: var(--london-white);
 }
 
 .gif-searcher {
@@ -232,6 +243,15 @@ h5 {
   text-shadow: black 1px 1px;
 }
 
+
+.btn:hover{
+  box-shadow:none;
+  text-decoration: none;
+  color: var(--london-red);
+}
+.btn:focus{
+  box-shadow:none;
+
 .form-btn {
   background: var(--london-blue);
   color: white;
@@ -261,11 +281,6 @@ h5 {
 
 .reaction-button:hover {
   transform: rotate(20deg);
-}
-
-.btn:hover,
-.btn:focus {
-  box-shadow: none;
 }
 
 .nav-bar {
@@ -353,12 +368,23 @@ h5 {
 }
 
 @media (max-width: 500px) {
-  .carousel-control-prev,
-  .carousel-control-next {
-    display: none;
-  }
+
+.slide-btn {
+  font-size: 30px;
 }
 
+}
+
+@media (max-width: 1150px) {
+.slide-left {
+  position:absolute;
+  left:0;
+}
+.slide-right {
+  position:absolute;
+  right:0;
+}
+}
 footer {
   height: 200px;
   width: 100%;

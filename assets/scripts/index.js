@@ -62,6 +62,7 @@ function searchAppend(e) {
         closeSearch.classList.remove('search-hidden');
         searchResultsArea.classList.remove('search-hidden');
         searchBar.value = '';
+
         results.forEach((result) =>
           append(
             'search',
@@ -80,11 +81,14 @@ function searchAppend(e) {
 async function searchData(searchList) {
   try {
     let responseG = await fetch('https://london-travel.herokuapp.com/general');
+
     let generalData = await responseG.json();
     generalData.forEach((post) => {
       searchList.push(post);
     });
+
     let responseP = await fetch('https://london-travel.herokuapp.com/places');
+
     let placesData = await responseP.json();
 
     placesData.forEach((post) => {
@@ -380,7 +384,7 @@ function returnPost(dataType, post) {
       </button>
 
       <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*3">
-      &#128293
+      &#128078
       <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[2]}
       </span>
