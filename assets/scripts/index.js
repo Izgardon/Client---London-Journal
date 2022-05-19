@@ -295,15 +295,14 @@ function sendReply(e, isGif = "no", gifDataType, gifPostId) {
 
 //Sending gifs (calls the sendReply function and modifies it for gifs)
 
-function gifReply(e, dataType, id, displayGiphy, gifSearchBox, gifSelector) {
+/* function gifReply(e, dataType, id, displayGiphy, gifSearchBox, gifSelector) {
   if (e.target.getAttribute("alt") == "gif") {
     sendReply(e, "yes", dataType, id);
     displayGiphy.innerHTML = "";
     gifSearchBox.value = "";
-    document.removeEventListener("click", gifSelector);
   }
 }
-
+ */
 //Giphy
 const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5";
 
@@ -311,32 +310,40 @@ function addingGifs(dataType, postId) {
   let gifSearch = document.getElementById("gifSearch");
   let displayGiphy = document.querySelector(".displayGiphy");
   let gifSearchBox = document.querySelector(".gifSearchBox");
-  gifSearch.addEventListener("click", (e) => {
-    e.preventDefault();
+  gifSearch.addEventListener("click", function gifClick(e) {
+    if (gifSearchBox.value) {
+      gifSearch.removeEventListener("click", gifClick);
 
-    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
-    let str = document.getElementById("search").value.trim();
-    url = url.concat(str);
+      let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
+      let str = document.getElementById("search").value.trim();
+      url = url.concat(str);
 
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((content) => {
-        content.data.forEach((data) => {
-          let fig = document.createElement("figure");
-          let img = document.createElement("img");
-          img.src = data.images.fixed_height_small.url;
-          img.alt = "gif";
-          fig.appendChild(img);
-          displayGiphy.insertAdjacentElement("afterbegin", fig);
+      fetch(url)
+        .then((resp) => resp.json())
+        .then((content) => {
+          content.data.forEach((data) => {
+            let fig = document.createElement("figure");
+            let img = document.createElement("img");
+            img.src = data.images.fixed_height_small.url;
+            img.alt = "gif";
+            fig.appendChild(img);
+            displayGiphy.insertAdjacentElement("afterbegin", fig);
+          });
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
 
-    document.addEventListener("click", function gifSelector(e) {
-      gifReply(e, dataType, postId, displayGiphy, gifSearchBox, gifSelector);
-    });
+      document.addEventListener("click", function gifSelector(e) {
+        if (e.target.getAttribute("alt") == "gif") {
+          sendReply(e, "yes", dataType, postId);
+          displayGiphy.innerHTML = "";
+          gifSearchBox.value = "";
+          gifSearch.addEventListener("click", gifClick);
+          document.removeEventListener("click", gifSelector);
+        }
+      });
+    }
   });
 }
 
@@ -401,7 +408,7 @@ function returnReplyModal(postData, dataType, postId) {
   <form class="gif-searcher" onkeydown="return event.key != 'Enter';">
   
   <input class= "gifSearchBox" type="search" id="search" placeholder="Search for GIF">
-  <button id="gifSearch" class="btn nav-button gif-button">Search</button>
+  <button id="gifSearch" onclick="event.preventDefault()" class="btn nav-button gif-button">Search</button>
   </form>
   
   <div class="displayGiphy"></div>
