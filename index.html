@@ -58,11 +58,11 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Title:</label>
-                  <input type="text" class="form-control general-title" required>
+                  <input type="text" class="form-control general-title" maxlength="40" required>
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control general-body" rows="5"  maxlength="200" required></textarea>
+                  <textarea class="form-control general-body" rows="5"  maxlength="150" required></textarea>
                 </div>
                 <button type="button" id="general" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
               </form>
@@ -86,11 +86,11 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Title:</label>
-                  <input type="text" class="form-control attractions-title" required>
+                  <input type="text" class="form-control attractions-title" maxlength="35" required>
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control attractions-body" rows="5"  maxlength="200" required></textarea>
+                  <textarea class="form-control attractions-body" rows="5"  maxlength="150" required></textarea>
                 </div>
                 <button type="button" id="attractions" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
               </form>
@@ -115,11 +115,11 @@
             <form>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Title:</label>
-                <input type="text" class="form-control places-title" required>
+                <input type="text" class="form-control places-title" maxlength="35" required>
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control places-body" rows="5"  maxlength="200" required></textarea>
+                <textarea class="form-control places-body" rows="5"  maxlength="150" required></textarea>
               </div>
               <button type="button" id="places" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
             </form>
@@ -178,9 +178,9 @@
     <!-- Search Bar -->
 
     <div class="search-wrapper">
-      <label for="site-search">Search Site</label>
-      <input type="search" id="site-search" data-search>
-      <button class="search-button" type="button">Search Here</button>
+
+      <input type="search" id="site-search" placeholder="Search for the Post you want..." data-search>
+      <button class="search-button btn" type="button">Search</button>
     </div>
     <div>
       <template data-search-template>

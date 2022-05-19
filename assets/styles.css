@@ -53,11 +53,26 @@ h1, h2, h5 {
       font-size: 20px;
     }
 
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  padding:2rem;
+  background-color: var(--london-red);
+}
+
+.search-button {
+  background-color: var(--london-blue);
+  color: var(--london-white);
+}
+
+#site-search {
+  width: 30rem;
+}
+    
     /* Cards */
 
     .card {
       border: black solid 1px;
-      aspect-ratio: 1;
       height: 300px;
     }
 
@@ -75,6 +90,7 @@ h1, h2, h5 {
 
     .card-post {
       padding-right: 8px;
+      min-width: 13rem;
     }
 
     .card-title {
@@ -127,20 +143,44 @@ h1, h2, h5 {
     color: var(--london-white);
   }
 
+  .col-form-label {
+    font-size: 17px;
+    font-family: 'Koulen', cursive;
+  }
+
   .reply-modal-title{
-    font-size: 18px;
+    font-size: 17px;
     padding: 1rem;
   }
 
   .modal-body-post {
     border-bottom: var(--modal-grey) 1px solid;
-    padding-bottom: 1rem;
+    padding: 0rem 3rem 1rem 3rem;
+    text-align:left;
+    
   }
 
 .reply {
   border-top: var(--modal-grey) 1px solid;
-    padding-bottom: 1rem;
+    padding: 2px 3rem 1rem 3rem;
+    text-align: right
 }
+
+.send-reply-button {
+  margin: 1rem 0rem;
+}
+
+.gif-button {
+  padding:0.1rem;
+}
+
+.gif-searcher {
+padding-top: 1rem;
+display: flex;
+justify-content: center;
+}
+
+
 
 /* Giphy */
 

@@ -380,22 +380,22 @@ function returnReplyModal(postData, dataType, postId) {
   </div>
   <h5 class="reply-modal-title">Original Post:</h5>
   <div class="modal-body-post">${postData.body}</div>
-  <h5 class="reply-modal-title">Replies:</h5>
+  <h5 class="reply-modal-title">Reply Section:</h5>
   <div class="modal-body modal-reply-body">
   </div>
   <label for="reply-text" class="col-form-label"></label>
-  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Message" required></textarea>
+  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Enter Reply..." required></textarea>
 
-  <form onkeydown="return event.key != 'Enter';">
-  <label for="search">Search</label>
-  <input class= "gifSearchBox" type="search" id="search">
-  <div id="gifSearch">Go</div>
+  <form class="gif-searcher" onkeydown="return event.key != 'Enter';">
+  
+  <input class= "gifSearchBox" type="search" id="search" placeholder="Search for GIF">
+  <button id="gifSearch" class="btn nav-button gif-button">Search</button>
   </form>
   
   <div class="displayGiphy"></div>
   <form>
 
-  <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button">Send reply</button>
+  <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button send-reply-button">Send reply</button>
   </form>
   <div class="modal-footer">
   
