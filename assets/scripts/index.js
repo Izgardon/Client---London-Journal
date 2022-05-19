@@ -1,8 +1,8 @@
 //Query selectors
 
-const postBtns = document.querySelectorAll(".form-btn");
+const postBtns = document.querySelectorAll('.form-btn');
 
-const replyModalArea = document.querySelector(".modal-reply-area");
+const replyModalArea = document.querySelector('.modal-reply-area');
 
 const searchBar = document.querySelector("#site-search");
 const searchButton = document.querySelector(".search-button");
@@ -11,9 +11,9 @@ const closeSearch = document.querySelector(".close-search");
 
 //Adding all posts that are on server on load
 
-getAllPosts("general");
-getAllPosts("attractions");
-getAllPosts("places");
+getAllPosts('general');
+getAllPosts('attractions');
+getAllPosts('places');
 
 //Search list for access anywhere in script
 
@@ -21,7 +21,7 @@ getAllPosts("places");
 
 //Reply Modals
 
-document.addEventListener("click", (e) => {
+document.addEventListener('click', (e) => {
   submitPostModal(e);
   createReplyModal(e);
   emojiCounter(e);
@@ -41,13 +41,13 @@ closeSearch.addEventListener("click", (e) => {
 });
 
 function searchAppend(e) {
-  if (e.target.classList.contains("search-button")) {
+  if (e.target.classList.contains('search-button')) {
     e.preventDefault();
     let searchTerm = searchBar.value.toLowerCase();
     let results = [];
     let searchList = [];
 
-    clearAllPosts("search");
+    clearAllPosts('search');
     searchData(searchList);
 
     setTimeout(() => {
@@ -59,12 +59,14 @@ function searchAppend(e) {
 
       searchList = [];
       if (results[0]) {
+
         closeSearch.classList.remove("search-hidden");
         searchResultsArea.classList.remove("search-hidden");
         searchBar.value = "";
+
         results.forEach((result) =>
           append(
-            "search",
+            'search',
             result,
             results,
             results.length - 1 - results.indexOf(result)
@@ -80,19 +82,24 @@ function searchAppend(e) {
 async function searchData(searchList) {
   try {
     let responseG = await fetch("https://london-travel.herokuapp.com/general");
+
     let generalData = await responseG.json();
     generalData.forEach((post) => {
       searchList.push(post);
     });
+
     let responseP = await fetch("https://london-travel.herokuapp.com/places");
+
     let placesData = await responseP.json();
 
     placesData.forEach((post) => {
       searchList.push(post);
     });
+
     let responseA = await fetch(
       "https://london-travel.herokuapp.com/attractions"
     );
+
     let attractionsData = await responseA.json();
 
     attractionsData.forEach((post) => {
@@ -106,7 +113,7 @@ async function searchData(searchList) {
 //Getting all posts on load
 
 function clearAllPosts(dataType) {
-  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = "";
+  eval(document.querySelector(`.${dataType}-posts`)).innerHTML = '';
 }
 
 function getAllPosts(dataType) {
@@ -127,7 +134,7 @@ function getAllPosts(dataType) {
 //Adding a new post
 
 function submitPostModal(e) {
-  if (e.target.classList.contains("form-btn")) {
+  if (e.target.classList.contains('form-btn')) {
     e.preventDefault();
     let dataType = e.target.id;
     let title = document.querySelector(`.${dataType}-title`).value;
@@ -142,8 +149,8 @@ function submitPostModal(e) {
 
       postNewPost(dataType, postData);
 
-      document.querySelector(`.${dataType}-title`).value = "";
-      document.querySelector(`.${dataType}-body`).value = "";
+      document.querySelector(`.${dataType}-title`).value = '';
+      document.querySelector(`.${dataType}-body`).value = '';
     } else {
       setTimeout(() => {
         document.querySelector(`#${dataType}-button`).click();
@@ -154,10 +161,10 @@ function submitPostModal(e) {
 
 function postNewPost(dataType, post) {
   const options = {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(post),
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   fetch(`https://london-travel.herokuapp.com/${dataType}`, options)
@@ -183,41 +190,41 @@ function append(dataType, post, allData, position) {
     document
       .querySelector(`.${dataType}-posts`)
       .insertAdjacentHTML(
-        "beforeend",
+        'beforeend',
         `<div class="carousel-item ${
-          page == 1 ? "active" : ""
+          page == 1 ? 'active' : ''
         }  ${dataType}-${page}"></div>`
       );
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
   }
 
   //Else statement deals with just adding new posts to current carousel page
   else {
     document
       .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+      .insertAdjacentHTML('beforeend', returnPost(dataType, post));
   }
 }
 
 //Adding emoji counter
 
 function emojiCounter(e) {
-  if (e.target.classList.contains("reaction-button")) {
-    let dataType = e.target.id.split("*")[0];
-    let postId = e.target.id.split("*")[1];
-    let emojiId = e.target.id.split("*")[2];
+  if (e.target.classList.contains('reaction-button')) {
+    let dataType = e.target.id.split('*')[0];
+    let postId = e.target.id.split('*')[1];
+    let emojiId = e.target.id.split('*')[2];
 
     document.getElementById(e.target.id).childNodes[1].textContent++;
 
     const options = {
-      method: "PATCH",
+      method: 'PATCH',
       body: JSON.stringify({
         reactions: emojiId,
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        'Content-type': 'application/json; charset=UTF-8',
       },
     };
 
@@ -228,33 +235,33 @@ function emojiCounter(e) {
 //Adding the reply modal
 
 function createReplyModal(e) {
-  if (e.target.classList.contains("reply-button")) {
-    replyModalArea.innerHTML = "";
+  if (e.target.classList.contains('reply-button')) {
+    replyModalArea.innerHTML = '';
 
-    let dataType = e.target.id.split("-")[0];
-    let postId = e.target.id.split("-")[1];
+    let dataType = e.target.id.split('-')[0];
+    let postId = e.target.id.split('-')[1];
 
     fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
-          "afterbegin",
+          'afterbegin',
           returnReplyModal(postData, dataType, postId)
         );
         postData.replies.forEach((reply) => {
           document
-            .querySelector(".modal-reply-body")
+            .querySelector('.modal-reply-body')
             .insertAdjacentHTML(
-              "afterbegin",
+              'afterbegin',
               `<div class="reply">${reply}</div>`
             );
         });
         addingGifs(dataType, postId);
         document
           .querySelector(`#${dataType}-${postId}-reply-button`)
-          .addEventListener("click", (e) => {
+          .addEventListener('click', (e) => {
             sendReply(e);
-            document.querySelector(".replyMessageBox").value = "";
+            document.querySelector('.replyMessageBox').value = '';
           });
       });
   }
@@ -262,31 +269,31 @@ function createReplyModal(e) {
 
 //Function for sending replies ------------------------------------------------------------------------
 
-function sendReply(e, isGif = "no", gifDataType, gifPostId) {
-  let reply = "";
-  let dataType = "";
-  let postId = "";
-  if (isGif == "no") {
-    dataType = e.target.id.split("-")[0];
-    postId = e.target.id.split("-")[1];
+function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
+  let reply = '';
+  let dataType = '';
+  let postId = '';
+  if (isGif == 'no') {
+    dataType = e.target.id.split('-')[0];
+    postId = e.target.id.split('-')[1];
 
     reply = document.querySelector(`#${dataType}-${postId}-reply-box`).value;
-  } else if (isGif == "yes") {
+  } else if (isGif == 'yes') {
     reply = `<img src="${e.target.src}" alt="Cool Gif">`;
     dataType = gifDataType;
     postId = gifPostId;
   }
 
   document
-    .querySelector(".modal-reply-body")
-    .insertAdjacentHTML("beforeend", `<div class="reply">${reply}</div>`);
+    .querySelector('.modal-reply-body')
+    .insertAdjacentHTML('beforeend', `<div class="reply">${reply}</div>`);
   const options = {
-    method: "PATCH",
+    method: 'PATCH',
     body: JSON.stringify({
       reply: reply,
     }),
     headers: {
-      "Content-type": "application/json; charset=UTF-8",
+      'Content-type': 'application/json; charset=UTF-8',
     },
   };
 
@@ -304,9 +311,10 @@ function sendReply(e, isGif = "no", gifDataType, gifPostId) {
 }
  */
 //Giphy
-const APIKEY = "D1iipyMQItHYCfLcRNkam36gNXOSaSm5";
+const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
 
 function addingGifs(dataType, postId) {
+
   let gifSearch = document.getElementById("gifSearch");
   let displayGiphy = document.querySelector(".displayGiphy");
   let gifSearchBox = document.querySelector(".gifSearchBox");
@@ -423,5 +431,8 @@ function returnReplyModal(postData, dataType, postId) {
 `;
 }
 
-/* module.exports = postNewPost;
-module.exports = getAllPosts; */
+module.exports = postNewPost;
+module.exports = getAllPosts;
+module.exports = returnPost;
+module.exports = returnReplyModal;
+// module.exports = append;
