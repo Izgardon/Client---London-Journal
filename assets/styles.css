@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Koulen&display=swap");
 
+*:focus {
+  outline: 0 !important;
+}
+
 body {
   text-align: center;
 }
@@ -12,7 +16,7 @@ h5 {
 }
 
 :root {
-  --london-red: #e22323;
+  --london-red: rgba(226, 35, 35, 0.8);
   --london-blue: rgba(10, 10, 70, 0.9);
   --london-white: #efefef;
   --modal-grey: #dee2e6;
@@ -49,9 +53,11 @@ h5 {
 }
 
 .search-wrapper {
-  width: 50%;
+  position: relative;
+  max-width: 750px;
+  width: 80%;
   margin-inline: auto;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   padding: 2rem;
@@ -61,8 +67,18 @@ h5 {
 .search-button {
   background-color: var(--london-blue);
   color: var(--london-white);
-  border-radius: 2rem;
+  border-radius: 1rem;
+  margin-right: 3rem;
   margin-left: 1rem;
+}
+
+.close-search {
+  color: white;
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 #site-search {
@@ -216,6 +232,42 @@ h5 {
   text-shadow: black 1px 1px;
 }
 
+.form-btn {
+  background: var(--london-blue);
+  color: white;
+}
+
+.gifSearchBox {
+  border-radius: 0.25rem;
+}
+.gif-button {
+  background: var(--london-red);
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.reply-button:hover,
+.search-button:hover,
+.form-btn:hover,
+.gif-button:hover {
+  color: white;
+  transform: scale(1.04);
+}
+
+.reaction-button {
+  transition: transform 0.1s ease-in;
+}
+
+.reaction-button:hover {
+  transform: rotate(20deg);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: none;
+}
+
 .nav-bar {
   align-items: center;
   justify-content: flex-end;
@@ -226,6 +278,20 @@ h5 {
   right: 0;
   background-color: rgba(10, 10, 70, 0.8);
   backdrop-filter: blur(1rem);
+  display: flex;
+  text-align: right;
+}
+
+.navbar-toggler {
+  right: 85vw;
+  position: absolute;
+  border-style: none;
+  top: -1rem;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .nav-items {
@@ -239,6 +305,7 @@ h5 {
   position: relative;
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+  margin-right: 2rem;
 }
 
 .nav-item:hover {
@@ -285,6 +352,13 @@ h5 {
   display: none;
 }
 
+@media (max-width: 500px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
+}
+
 footer {
   height: 200px;
   width: 100%;
@@ -300,7 +374,14 @@ footer {
   display: flex;
   flex-direction: column;
 }
+
 .footer-text > a:hover {
   text-decoration: none;
+  color: var(--london-red);
+}
+
+.footer-text > p {
+  font-size: 2rem;
+  font-weight: 800;
   color: var(--london-red);
 }

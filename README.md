@@ -181,7 +181,9 @@ Server - William
 
 Displaying posts - Aaron, William
 
-New Post Modal & Reply Modal - Aaron, William
+Modal that creates new Post - Aaron, William
+
+Reply Modal and sending functionality - Aaron, William
 
 CSS - Aaron, William
 
@@ -189,7 +191,7 @@ Emoji functionality - Aaron, William
 
 Giphy Search - Shoreen
 
-Search Bar- William
+Search bar/results - William
 
 README - Alice, Shoreen
 

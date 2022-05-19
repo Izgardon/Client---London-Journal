@@ -7,6 +7,7 @@ const replyModalArea = document.querySelector('.modal-reply-area');
 const searchBar = document.querySelector('#site-search');
 const searchButton = document.querySelector('.search-button');
 const searchResultsArea = document.querySelector('#search-carousel');
+const closeSearch = document.querySelector('.close-search');
 
 //Adding all posts that are on server on load
 
@@ -33,6 +34,12 @@ document.addEventListener('click', (e) => {
 
 //This function appends the items that match the seach criteria into the new search
 
+closeSearch.addEventListener('click', (e) => {
+  searchResultsArea.classList.add('search-hidden');
+  clearAllPosts('search');
+  closeSearch.classList.add('search-hidden');
+});
+
 function searchAppend(e) {
   if (e.target.classList.contains('search-button')) {
     e.preventDefault();
@@ -52,7 +59,9 @@ function searchAppend(e) {
 
       searchList = [];
       if (results[0]) {
+        closeSearch.classList.remove('search-hidden');
         searchResultsArea.classList.remove('search-hidden');
+        searchBar.value = '';
         results.forEach((result) =>
           append(
             'search',
@@ -70,18 +79,20 @@ function searchAppend(e) {
 
 async function searchData(searchList) {
   try {
-    let responseG = await fetch('http://localhost:3000/general');
+    let responseG = await fetch('https://london-travel.herokuapp.com/general');
     let generalData = await responseG.json();
     generalData.forEach((post) => {
       searchList.push(post);
     });
-    let responseP = await fetch('http://localhost:3000/places');
+    let responseP = await fetch('https://london-travel.herokuapp.com/places');
     let placesData = await responseP.json();
 
     placesData.forEach((post) => {
       searchList.push(post);
     });
-    let responseA = await fetch('http://localhost:3000/attractions');
+    let responseA = await fetch(
+      'https://london-travel.herokuapp.com/attractions'
+    );
     let attractionsData = await responseA.json();
 
     attractionsData.forEach((post) => {
@@ -99,7 +110,7 @@ function clearAllPosts(dataType) {
 }
 
 function getAllPosts(dataType) {
-  fetch(`http://localhost:3000/${dataType}`)
+  fetch(`https://london-travel.herokuapp.com/${dataType}`)
     .then((r) => r.json())
     .then((allPostData) => {
       for (let i = allPostData.length; i >= 1; i--) {
@@ -149,7 +160,7 @@ function postNewPost(dataType, post) {
       'Content-Type': 'application/json',
     },
   };
-  fetch(`http://localhost:3000/${dataType}`, options)
+  fetch(`https://london-travel.herokuapp.com/${dataType}`, options)
     .then((r) => r.json())
     .catch(console.warn);
 
@@ -210,7 +221,7 @@ function emojiCounter(e) {
       },
     };
 
-    fetch(`http://localhost:3000/${dataType}/${postId}`, options);
+    fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`, options);
   }
 }
 
@@ -223,7 +234,7 @@ function createReplyModal(e) {
     let dataType = e.target.id.split('-')[0];
     let postId = e.target.id.split('-')[1];
 
-    fetch(`http://localhost:3000/${dataType}/${postId}`)
+    fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
@@ -279,20 +290,19 @@ function sendReply(e, isGif = 'no', gifDataType, gifPostId) {
     },
   };
 
-  fetch(`http://localhost:3000/${dataType}/${postId}`, options);
+  fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`, options);
 }
 
 //Sending gifs (calls the sendReply function and modifies it for gifs)
 
-function gifReply(e, dataType, id, displayGiphy, gifSearchBox, gifSelector) {
-  if (e.target.getAttribute('alt') == 'gif') {
-    sendReply(e, 'yes', dataType, id);
-    displayGiphy.innerHTML = '';
-    gifSearchBox.value = '';
-    document.removeEventListener('click', gifSelector);
+/* function gifReply(e, dataType, id, displayGiphy, gifSearchBox, gifSelector) {
+  if (e.target.getAttribute("alt") == "gif") {
+    sendReply(e, "yes", dataType, id);
+    displayGiphy.innerHTML = "";
+    gifSearchBox.value = "";
   }
 }
-
+ */
 //Giphy
 const APIKEY = 'D1iipyMQItHYCfLcRNkam36gNXOSaSm5';
 
@@ -300,32 +310,40 @@ function addingGifs(dataType, postId) {
   let gifSearch = document.getElementById('gifSearch');
   let displayGiphy = document.querySelector('.displayGiphy');
   let gifSearchBox = document.querySelector('.gifSearchBox');
-  gifSearch.addEventListener('click', (e) => {
-    e.preventDefault();
+  gifSearch.addEventListener('click', function gifClick(e) {
+    if (gifSearchBox.value) {
+      gifSearch.removeEventListener('click', gifClick);
 
-    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
-    let str = document.getElementById('search').value.trim();
-    url = url.concat(str);
+      let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKEY}&limit=5&q=`;
+      let str = document.getElementById('search').value.trim();
+      url = url.concat(str);
 
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((content) => {
-        content.data.forEach((data) => {
-          let fig = document.createElement('figure');
-          let img = document.createElement('img');
-          img.src = data.images.fixed_height_small.url;
-          img.alt = 'gif';
-          fig.appendChild(img);
-          displayGiphy.insertAdjacentElement('afterbegin', fig);
+      fetch(url)
+        .then((resp) => resp.json())
+        .then((content) => {
+          content.data.forEach((data) => {
+            let fig = document.createElement('figure');
+            let img = document.createElement('img');
+            img.src = data.images.fixed_height_small.url;
+            img.alt = 'gif';
+            fig.appendChild(img);
+            displayGiphy.insertAdjacentElement('afterbegin', fig);
+          });
+        })
+        .catch((err) => {
+          console.error(err);
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
 
-    document.addEventListener('click', function gifSelector(e) {
-      gifReply(e, dataType, postId, displayGiphy, gifSearchBox, gifSelector);
-    });
+      document.addEventListener('click', function gifSelector(e) {
+        if (e.target.getAttribute('alt') == 'gif') {
+          sendReply(e, 'yes', dataType, postId);
+          displayGiphy.innerHTML = '';
+          gifSearchBox.value = '';
+          gifSearch.addEventListener('click', gifClick);
+          document.removeEventListener('click', gifSelector);
+        }
+      });
+    }
   });
 }
 
@@ -342,7 +360,7 @@ function returnPost(dataType, post) {
       <h5 class="card-title">${post.title}</h5>
       <p class="card-text">${post.body}</p>
 
-      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+      <button class="btn card-button reply-button" id="${post.type}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
     </div>
 
     <div class="card-reactions">
@@ -385,18 +403,18 @@ function returnReplyModal(postData, dataType, postId) {
   <div class="modal-body modal-reply-body">
   </div>
   <label for="reply-text" class="col-form-label"></label>
-  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Enter Reply..." required></textarea>
+  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${postData.type}-${postId}-reply-box" placeholder="Enter Reply..." required></textarea>
 
   <form class="gif-searcher" onkeydown="return event.key != 'Enter';">
   
   <input class= "gifSearchBox" type="search" id="search" placeholder="Search for GIF">
-  <button id="gifSearch" class="btn nav-button gif-button">Search</button>
+  <button id="gifSearch" onclick="event.preventDefault()" class="btn nav-button gif-button">Search</button>
   </form>
   
   <div class="displayGiphy"></div>
   <form>
 
-  <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button send-reply-button">Send reply</button>
+  <button type="button" id="${postData.type}-${postId}-reply-button"  class="form-btn btn nav-button send-reply-button">Send reply</button>
   </form>
   <div class="modal-footer">
   
