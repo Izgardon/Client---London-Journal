@@ -380,7 +380,7 @@ function returnPost(dataType, post) {
       </button>
 
       <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*3">
-      &#128293
+      &#128078
       <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[2]}
       </span>
