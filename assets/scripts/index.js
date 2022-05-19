@@ -353,7 +353,7 @@ function returnPost(dataType, post) {
       <h5 class="card-title">${post.title}</h5>
       <p class="card-text">${post.body}</p>
 
-      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+      <button class="btn card-button reply-button" id="${post.type}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
     </div>
 
     <div class="card-reactions">
@@ -396,7 +396,7 @@ function returnReplyModal(postData, dataType, postId) {
   <div class="modal-body modal-reply-body">
   </div>
   <label for="reply-text" class="col-form-label"></label>
-  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Enter Reply..." required></textarea>
+  <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${postData.type}-${postId}-reply-box" placeholder="Enter Reply..." required></textarea>
 
   <form class="gif-searcher" onkeydown="return event.key != 'Enter';">
   
@@ -407,7 +407,7 @@ function returnReplyModal(postData, dataType, postId) {
   <div class="displayGiphy"></div>
   <form>
 
-  <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button send-reply-button">Send reply</button>
+  <button type="button" id="${postData.type}-${postId}-reply-button"  class="form-btn btn nav-button send-reply-button">Send reply</button>
   </form>
   <div class="modal-footer">
   
