@@ -185,13 +185,13 @@ Modal that creates new Post - Aaron, William
 
 Reply Modal and sending functionality - Aaron, William
 
-CSS - Aaron, William
+HTML/CSS - Aaron, William
 
 Emoji functionality - Aaron, William
 
 Giphy Search - Shoreen
 
-Search bar/results - William
+Search bar and results - William
 
 README - Alice, Shoreen
 
