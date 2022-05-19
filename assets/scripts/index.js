@@ -6,6 +6,7 @@ const replyModalArea = document.querySelector(".modal-reply-area");
 
 const searchBar = document.querySelector("#site-search");
 const searchButton = document.querySelector(".search-button");
+const searchResultsArea = document.querySelector("#search-carousel");
 
 //Adding all posts that are on server on load
 
@@ -62,7 +63,7 @@ document.addEventListener("click", (e) => {
 function searchAppend(e) {
   if (e.target.classList.contains("search-button")) {
     e.preventDefault();
-
+    searchResultsArea.classList.remove("search-hidden");
     let searchTerm = searchBar.value.toLowerCase();
     let results = [];
     let searchList = [];

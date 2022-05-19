@@ -1,106 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Koulen&display=swap");
 
 body {
   text-align: center;
 }
 
-h1, h2, h5 {
-  font-family: 'Koulen', cursive;
+h1,
+h2,
+h5 {
+  font-family: "Koulen", cursive;
   margin: 0px;
 }
 
 :root {
+  --london-red: #af4a4a;
+  --london-blue: #646e95;
+  --london-white: #efefef;
+  --modal-grey: #dee2e6;
+}
 
-    --london-red: #af4a4a;
-    --london-blue: #646e95;
-    --london-white: #efefef;
-    --modal-grey: #dee2e6
-    }
-    
-    
-    .london-blue {
-      color: var(--london-blue);
-    }
-    
-    .bg-london-blue {
-      background-color: var(--london-blue);
-    }
-    
-    .london-red {
-      color: var(--london-red);
-    }
-    
-    .bg-london-red {
-      background-color: var(--london-red);
-    }
-    
-    .image-carousel {
-        object-fit: cover;
-        height: 400px;
-        object-position: 10px 50px;
-        
-    }
+.london-blue {
+  color: var(--london-blue);
+}
 
-    /* Title and Post */
+.bg-london-blue {
+  background-color: var(--london-blue);
+}
 
-    .title-submit {
-      display: flex;
-      justify-content: center;
-    }
+.london-red {
+  color: var(--london-red);
+}
 
-    .post-button {
-      font-size: 20px;
-    }
+.bg-london-red {
+  background-color: var(--london-red);
+}
 
-    /* Cards */
+.image-carousel {
+  object-fit: cover;
+  height: 100vh;
+}
 
-    .card {
-      border: black solid 1px;
-      aspect-ratio: 1;
-      height: 300px;
-    }
+/* Title and Post */
 
-    .main-card {
-      display: inline-flex;
-      width: 18rem;
-    }
-    
-    .card-body {
-      display: inline-flex;
-      padding: 1rem 8px;
-      text-align: center;
-      overflow: hidden;
-    }
+.title-submit {
+  display: flex;
+  justify-content: center;
+}
 
-    .card-post {
-      padding-right: 8px;
-    }
+.post-button {
+  font-size: 20px;
+}
 
-    .card-title {
-      word-wrap:;
-    }
+/* Cards */
 
-    .card-text {
-      text-align: justify;
-    }
-    
-    .card-reactions {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      border-left: black 1px solid;
-    }
+.card {
+  border: black solid 1px;
+  aspect-ratio: 1;
+  height: 300px;
+}
 
-    .card-button {
-      background-color: var(--london-blue);
-      color: var(--london-white);
-      position: absolute;
-      bottom: 5%;
-      left: 9%;
-    }
-    
-    
+.main-card {
+  display: inline-flex;
+  width: 18rem;
+}
+
+.card-body {
+  display: inline-flex;
+  padding: 1rem 8px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.card-post {
+  padding-right: 8px;
+}
+
+.card-text {
+  text-align: justify;
+}
+
+.card-reactions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-left: black 1px solid;
+}
+
+.card-button {
+  background-color: var(--london-blue);
+  color: var(--london-white);
+  position: absolute;
+  bottom: 5%;
+  left: 9%;
+}
+
 .reaction-button {
   font-size: 1.5rem;
 }
@@ -109,37 +101,36 @@ h1, h2, h5 {
   font-size: 0.7rem;
 }
 
-    .nav-button {
-        background-color: var(--london-blue);
-        color: var(--london-white);
-        
-      }
-      
-      
-      .slide-btn {
-        color: black;
-        font-size: 3rem;
-      }
-      
-     /* Modal */
-  .modal-header, .modal-footer {
-    background-color: var(--london-blue);
-    color: var(--london-white);
-  }
+.nav-button {
+  background-color: var(--london-blue);
+  color: var(--london-white);
+}
 
-  .reply-modal-title{
-    font-size: 18px;
-    padding: 1rem;
-  }
+.slide-btn {
+  color: black;
+  font-size: 3rem;
+}
 
-  .modal-body-post {
-    border-bottom: var(--modal-grey) 1px solid;
-    padding-bottom: 1rem;
-  }
+/* Modal */
+.modal-header,
+.modal-footer {
+  background-color: var(--london-blue);
+  color: var(--london-white);
+}
+
+.reply-modal-title {
+  font-size: 18px;
+  padding: 1rem;
+}
+
+.modal-body-post {
+  border-bottom: var(--modal-grey) 1px solid;
+  padding-bottom: 1rem;
+}
 
 .reply {
   border-top: var(--modal-grey) 1px solid;
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* Giphy */
@@ -148,37 +139,92 @@ h1, h2, h5 {
   display: inline-flex;
 }
 
-    
-    @media (min-width: 800px) {
-       
-        .changeimage {
-            position: absolute;
-            bottom: -20%;
-        }
-      }
+/* ------------------------------------------------------------------------- William */
 
-      @media (min-width: 1000px) {
-       
-        .changeimage {
-            position: absolute;
-            bottom: -35%;
-        }
-      }
+.flex {
+  display: flex;
+}
+.changeimage {
+  min-height: 100vh;
+  object-fit: cover;
+  z-index: 1;
+}
 
-      @media (min-width: 1200px) {
-       
-        .changeimage {
-            position: absolute;
-            bottom: -65%;
-        }
-      }
+.main-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 4rem;
+  text-shadow: black 1px 1px;
+}
 
-      @media (max-width: 600px) { 
-       
-        .main-card { 
-            width: 90%;
-            padding: 0px;
-            margin: 0px;
-        }
-      }
- 
+.nav-bar {
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  padding: 1.5rem 0 1rem 0;
+  right: 0;
+  background-color: rgba(10, 10, 70, 0.6);
+  backdrop-filter: blur(1rem);
+}
+
+.nav-items {
+  padding-right: 5rem;
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.nav-item {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+}
+
+.nav-item:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-item::after {
+  content: "";
+  z-index: 3000;
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease-in;
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+/* Mobile */
+
+/*------------Media Querys----------*/
+
+@media (min-width: 40rem) and (max-width: 51rem) {
+  .nav-items {
+    gap: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-card {
+    width: 90%;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.search-hidden {
+  display: none;
+}
