@@ -17,6 +17,17 @@
     <!-- IMAGE CAROUSEL -->
 
     <header>
+      <div class="nav-bar flex">
+          
+        <nav>
+          <ul id="nav-items" class="nav-items" data-visible="false">
+            <li><a class="nav-item" href="#home" >Home</a></li>
+            <li><a class="nav-item" href="#travel-advice" r>Travel Advice</a></li>
+            <li><a class="nav-item" href="#tourist-attractions" >Tourist Attractions</a></li>
+            <li><a class="nav-item" href="#restaurants" >Restaurants & Hotels</a></li>
+          </ul>
+        </nav>
+      </div>
       <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active image-carousel" data-bs-interval="5000">
@@ -165,18 +176,21 @@
 
         <!-- TITLE SECTION -->
 
-<h1 class="london-red p-5">The London Journal</h1>
-
-
-    <!-- NAVIGATION SECTION -->
-
-        <a class="btn nav-button" href="#travel-advice" role="button">Travel Advice</a>
-        <a class="btn nav-button" href="#tourist-attractions" role="button">Tourist Attractions</a>
-        <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
-        <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
-    
+        
+        
+        <!-- NAVIGATION SECTION -->
+        
+         
+        
+        
+        
+        <h1 class="london-red p-5 main-header" id="home">The London Journal</h1>
     <!-- Search Bar -->
 
+    
+    <!-- Search carousel -->
+    
+    <h2 id="search-header" class="london-red p-5">Search for a Post!</h2>
     <div class="search-wrapper">
 
       <input type="search" id="site-search" placeholder="Search for the Post you want..." data-search>
@@ -191,11 +205,7 @@
       </template>
     </div>
 
-    <!-- Search carousel -->
-
-    <h2 id="search-header" class="london-red p-5">Search Results</h2>
-
-    <div id="search-carousel" class="carousel slide  p-3">
+    <div id="search-carousel" class="carousel slide  p-3 search-hidden">
             
           <div class="carousel-inner search-posts">
 

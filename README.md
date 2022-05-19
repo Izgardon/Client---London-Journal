@@ -4,7 +4,9 @@
 <img src="https://i.ibb.co/k0fJSY8/hugo-sousa-1-Z7-QDZq-T2-QQ-verysmall.jpg">
 </p>
 
+
 <div align="center">
+
 
 [London journal](https://journal-to-end-all-journals.herokuapp.com/) is an application for travelling to London. It allows you to find out about best places where to go and what to do according to people's own experiences and opinions. It is designed to offer freedom to interact with the posts by liking or disliking them, adding comments and adding your own story/experience of London trip.
 
@@ -33,13 +35,14 @@
 - Express
 - Jest
 - Supertest
-- Wireframes
+- Balsamiq
 
 ## Process
 
 - Planning
 
   - Choosing a topic - London and travelling
+
   - Creating a vision of our webpage for mobile first approach:
 
     - Using Wireframes for visualisation:
@@ -47,6 +50,7 @@
     <br>
 
     <div align="center">
+
 
     ![](https://i.ibb.co/L9q6HdT/Screenshot-2022-05-17-120959.png)
 
@@ -58,6 +62,7 @@ The main colours used in this project were:
 
 <div align="center">
 
+
 #646E95 = blue
 #AF4A4A = red
 
@@ -66,17 +71,20 @@ The main colours used in this project were:
 
 </div>
 
-These colours replicate the blue and red of English flag found often in association of England's capital.
+These colours replicate the blue and red of the Union Jack.
 
 - Creating 2 repos - [server](https://github.com/alicekres/Lap-1-Portfolio-Project-Server) and [client](https://github.com/Izgardon/Lap-1-Portfolio-Project-Client)
-- Creating api endpoints in server / Backend setup
+- Creating API endpoints in server / Backend setup
 - Creating main page initial structure with CSS and HTML
 - Discussing in more detail the cards structure and webpage functionality
 - Deploying server repo (staging branch) to [Heroku](https://dashboard.heroku.com/apps)
-- Focusing on Javascript functionality and detailed structure of our webpage (adding new cards to carousels)
+- Creating a modal to post a topic
+- Creating a modal to reply to a topic
+- Creating Giphy search bar
 - Creating favicon:
 
 <div align="center">
+
 
 ![London journal favicon](https://i.ibb.co/Hz2s6jp/favicon-32x32.png)
 
@@ -95,7 +103,6 @@ These colours replicate the blue and red of English flag found often in associat
 - managed to add a new post/card dynamically to the correct carousel section
 
 ```
-
 //Function that deals with appending the posts to the correct carousel page
 
 function append(dataType, post) {
@@ -143,35 +150,70 @@ function append(dataType, post) {
 
 ```
 
-- learnt how to fetch gifs with the right APIkey and getting it working from different servers
+- Learned how to fetch gifs with the right API key and getting it working from different servers
 
-- Adding a modal for posting a new message about user's experience in London
+- Adding the modals for posting a new topic and replying to a topic about the user's experience in London
 
 <br>
 
 ## Challenges
 
-- Adding APIKey for gifs in heroku and using APIKey manually in developement branches where we were still working at
+- Dynamically adding a new card to the carousel with the correct content and ID.
+- Adding API key for gifs in heroku and using APIKey manually in the development branches we were still working on.
 
 <div align="center">
+
 
 ![London gif](https://media2.giphy.com/media/jRHOfOfg4vCYkX7sFE/giphy.gif?cid=ecf05e47s480dj5gfl9sdthlpas6zfxx89vxb24vy716j4ji&rid=giphy.gif&ct=g)
 
 </div>
 
-- Making emojis interactive in such a may their count goes up and a user can't click on the same emoji straight away countless times
+- Making emojis interactive so that the count goes up and a user can't click on the same emoji straight away countless times
 
 - Adding search bar and being able to find a right card / topic among 3 different carousels full of their own array of cards
 
 ## Contribution guide
 
+Wireframes - Shoreen
+
+Favicon - Alice
+
+Design - All
+
+Main Card Components  - Aaron, William
+
+Modals - Aaron, William
+
+CSS - Aaron, William
+
+Emoji's - Aaron, William
+
+Giphy Search - Shoreen
+
+Search Bar-  William
+
+README - Alice, Shoreen
+
+Deploying - Alice
+
+Testing - Alice
+
+
+
 ## Bugs
 
 - Cannot PATCH/ regards to emojis
 - Gifs get called 2 x times instead of once upon pressing a button
-- exporting functions and using them in testing file causes the test run already beforehand calling
+- Exporting functions and using them in testing file causes the test to run before calling
 
 ## Future features
+
+- Extend the search function to the replies
+- Contact us page
+- Social media links
+- User account
+- Customised images
+- Add reactions to individual replies
 
 ## Licence
 
