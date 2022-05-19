@@ -17,18 +17,26 @@
     <!-- IMAGE CAROUSEL -->
 
     <header>
-      <div class="nav-bar flex">
-          
-        <nav>
-          <ul id="nav-items" class="nav-items" data-visible="false">
-            <li><a class="nav-item" href="#home" >Home</a></li>
-            <li><a class="nav-item" href="#travel-advice" r>Travel Advice</a></li>
-            <li><a class="nav-item" href="#tourist-attractions" >Tourist Attractions</a></li>
-            <li><a class="nav-item" href="#restaurants" >Restaurants & Hotels</a></li>
-          </ul>
+      <div class="nav-bar">
+
+            <nav class="navbar navbar-expand-sm navbar-dark" aria-label="Main navbar">
+              <div class="container-fluid">
+      
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="main-navbar">
+              <ul id="nav-items" class="navbar-nav me-auto mb-2" data-visible="false">
+                <li><a class="nav-item" href="#home" >Home</a></li>
+                <li><a class="nav-item" href="#travel-advice" r>Travel Advice</a></li>
+                <li><a class="nav-item" href="#tourist-attractions" >Tourist Attractions</a></li>
+                <li><a class="nav-item" href="#restaurants" >Restaurants & Hotels</a></li>
+              </ul>
+              </div>
+            </div>
         </nav>
       </div>
-      <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
+      <div id="image-carousel-top" class="carousel slide " data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active image-carousel" data-bs-interval="5000">
               <img src="https://wallpaperaccess.com/full/466320.jpg" class="d-block w-100 changeimage" alt="...">
@@ -40,11 +48,11 @@
               <img src="https://wallpaperaccess.com/full/466357.jpg" class="d-block w-100 changeimage" alt="...">
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#image-carousel-top" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#image-carousel-top" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
