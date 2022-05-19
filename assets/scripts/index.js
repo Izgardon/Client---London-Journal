@@ -18,37 +18,10 @@ getAllPosts("places");
 
 //Event listeners -----------------------------------------------------------------------------------------------------
 
-//Adding individual buttons for each new post modal to submit a new post via a form - it takes the class name to make it universal
-
-postBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    let dataType = e.target.id;
-    let title = document.querySelector(`.${dataType}-title`).value;
-    let body = document.querySelector(`.${dataType}-body`).value;
-    if (title && body) {
-      const postData = {
-        title: title,
-        body: body,
-        reactions: [0, 0, 0],
-        replies: [],
-      };
-
-      postNewPost(dataType, postData);
-
-      document.querySelector(`.${dataType}-title`).value = "";
-      document.querySelector(`.${dataType}-body`).value = "";
-    } else {
-      setTimeout(() => {
-        document.querySelector(`#${dataType}-button`).click();
-      }, 400);
-    }
-  });
-});
-
 //Reply Modals
 
 document.addEventListener("click", (e) => {
+  submitPostModal(e);
   createReplyModal(e);
   emojiCounter(e);
   searchAppend(e);
@@ -63,7 +36,6 @@ document.addEventListener("click", (e) => {
 function searchAppend(e) {
   if (e.target.classList.contains("search-button")) {
     e.preventDefault();
-    searchResultsArea.classList.remove("search-hidden");
     let searchTerm = searchBar.value.toLowerCase();
     let results = [];
     let searchList = [];
@@ -79,15 +51,17 @@ function searchAppend(e) {
       }
 
       searchList = [];
-
-      results.forEach((result) =>
-        append(
-          "search",
-          result,
-          results,
-          results.length - 1 - results.indexOf(result)
-        )
-      );
+      if (results[0]) {
+        searchResultsArea.classList.remove("search-hidden");
+        results.forEach((result) =>
+          append(
+            "search",
+            result,
+            results,
+            results.length - 1 - results.indexOf(result)
+          )
+        );
+      }
     }, 100);
   }
 }
@@ -140,6 +114,32 @@ function getAllPosts(dataType) {
 }
 
 //Adding a new post
+
+function submitPostModal(e) {
+  if (e.target.classList.contains("form-btn")) {
+    e.preventDefault();
+    let dataType = e.target.id;
+    let title = document.querySelector(`.${dataType}-title`).value;
+    let body = document.querySelector(`.${dataType}-body`).value;
+    if (title && body) {
+      const postData = {
+        title: title,
+        body: body,
+        reactions: [0, 0, 0],
+        replies: [],
+      };
+
+      postNewPost(dataType, postData);
+
+      document.querySelector(`.${dataType}-title`).value = "";
+      document.querySelector(`.${dataType}-body`).value = "";
+    } else {
+      setTimeout(() => {
+        document.querySelector(`#${dataType}-button`).click();
+      }, 400);
+    }
+  }
+}
 
 function postNewPost(dataType, post) {
   const options = {

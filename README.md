@@ -4,9 +4,7 @@
 <img src="https://i.ibb.co/k0fJSY8/hugo-sousa-1-Z7-QDZq-T2-QQ-verysmall.jpg">
 </p>
 
-
 <div align="center">
-
 
 [London journal](https://journal-to-end-all-journals.herokuapp.com/) is an application for travelling to London. It allows you to find out about best places where to go and what to do according to people's own experiences and opinions. It is designed to offer freedom to interact with the posts by liking or disliking them, adding comments and adding your own story/experience of London trip.
 
@@ -51,7 +49,6 @@
 
     <div align="center">
 
-
     ![](https://i.ibb.co/L9q6HdT/Screenshot-2022-05-17-120959.png)
 
     </div>
@@ -61,7 +58,6 @@
 The main colours used in this project were:
 
 <div align="center">
-
 
 #646E95 = blue
 #AF4A4A = red
@@ -85,7 +81,6 @@ These colours replicate the blue and red of the Union Jack.
 
 <div align="center">
 
-
 ![London journal favicon](https://i.ibb.co/Hz2s6jp/favicon-32x32.png)
 
 </div>
@@ -100,59 +95,61 @@ These colours replicate the blue and red of the Union Jack.
 
 ## Wins
 
-- managed to add a new post/card dynamically to the correct carousel section
+- Deployed through Heroku with no struggle which freed up a lot of time
 
-```
-//Function that deals with appending the posts to the correct carousel page
-
-function append(dataType, post) {
-  let page = Math.ceil(post.id / 3);
-
-  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
-
-  if (post.id % 3 == 1) {
-    eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
-      'beforeend',
-      `<div class="carousel-item ${
-        page == 1 ? 'active' : ''
-      }  ${dataType}-${page}"></div>`
-    );
-    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      'beforeend',
-      ` <div class="card main-card m-3"  style="width: 18rem;">
-
-                    <div class="card-body">
-                      <h5 class="card-title">${post.title}</h5>
-                      <p class="card-text">${post.body}</p>
-                      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
-                    </div>
-              </div>
-            `
-    );
-  }
-
-  //Else statement deals with just adding new posts to current carousel page
-  else {
-    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      'beforeend',
-      ` <div class="card main-card m-3"  style="width: 18rem;">
-
-                  <div class="card-body">
-                    <h5 class="card-title">${post.title}</h5>
-                    <p class="card-text">${post.body}</p>
-                    <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
-                  </div>
-            </div>
-          `
-    );
-  }
-}
-
-```
+- Created a server with 3 different routes but built in a way that each function could be universal and would get/post the correct data
+  to the correct JSON file
 
 - Learned how to fetch gifs with the right API key and getting it working from different servers
 
 - Adding the modals for posting a new topic and replying to a topic about the user's experience in London
+
+- Created a function that worked for both sending a normal reply and for sending a gif reply when one was chosen
+
+- Search bar to return great keyword matches and then display all results in a new carousel which could contain data from all 3 datatypes
+
+- managed to add a new post/card dynamically to the correct carousel section - clears all posts then re-displays as to not refresh the page
+
+- created one patch function that patches for both emoji count and replies
+
+- great test coverage on server side
+
+```
+//Universal Function that deals with appending the posts to the correct carousel page (including search)
+//This was complicated as we want to post new posts in the first position, but it wasnt as simple as just reversing the array due to
+//how the pages worked
+
+function append(dataType, post, allData, position) {
+  let postNumber = allData.length + 1 - `${position + 1}`;
+
+  let page = Math.ceil(postNumber / 3);
+
+  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
+
+  if (postNumber % 3 == 1) {
+    document
+      .querySelector(`.${dataType}-posts`)
+      .insertAdjacentHTML(
+        "beforeend",
+        `<div class="carousel-item ${
+          page == 1 ? "active" : ""
+        }  ${dataType}-${page}"></div>`
+      );
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+  }
+
+  //Else statement deals with just adding new posts to current carousel page
+  else {
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+  }
+}
+
+
+```
 
 <br>
 
@@ -160,9 +157,9 @@ function append(dataType, post) {
 
 - Dynamically adding a new card to the carousel with the correct content and ID.
 - Adding API key for gifs in heroku and using APIKey manually in the development branches we were still working on.
+- Making sure the correct replies were collected depending on which post you opened up - as it worked through one modal.
 
 <div align="center">
-
 
 ![London gif](https://media2.giphy.com/media/jRHOfOfg4vCYkX7sFE/giphy.gif?cid=ecf05e47s480dj5gfl9sdthlpas6zfxx89vxb24vy716j4ji&rid=giphy.gif&ct=g)
 
@@ -180,25 +177,25 @@ Favicon - Alice
 
 Design - All
 
-Main Card Components  - Aaron, William
+Server - William
 
-Modals - Aaron, William
+Displaying posts - Aaron, William
+
+New Post Modal & Reply Modal - Aaron, William
 
 CSS - Aaron, William
 
-Emoji's - Aaron, William
+Emoji functionality - Aaron, William
 
 Giphy Search - Shoreen
 
-Search Bar-  William
+Search Bar- William
 
 README - Alice, Shoreen
 
 Deploying - Alice
 
 Testing - Alice
-
-
 
 ## Bugs
 
