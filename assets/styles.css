@@ -15,6 +15,12 @@ h5 {
   margin: 0px;
 }
 
+h2 {
+  padding: 3rem;
+  padding-top: 6rem;
+  margin-top: -3rem;
+}
+
 :root {
   --london-red: rgba(226, 35, 35, 0.8);
   --london-blue: rgba(10, 10, 70, 0.9);
@@ -111,10 +117,6 @@ h5 {
   min-width: 13rem;
 }
 
-.card-title {
-  word-wrap: ;
-}
-
 .card-text {
   text-align: justify;
 }
@@ -193,10 +195,19 @@ h5 {
 
 .send-reply-button {
   margin: 1rem 0rem;
+  background-color: var(--london-blue);
+  color: var(--london-white);
+}
+
+.send-post-button {
+  background-color: var(--london-blue);
+  color: var(--london-white);
 }
 
 .gif-button {
   padding: 0.1rem;
+  background-color: var(--london-blue);
+  color: var(--london-white);
 }
 
 .gif-searcher {
@@ -232,7 +243,12 @@ h5 {
   text-shadow: black 1px 1px;
 }
 
-.btn:hover, .btn:focus{
+.btn:hover{
+  box-shadow:none;
+  text-decoration: none;
+  color: var(--london-red);
+}
+.btn:focus{
   box-shadow:none;
 }
 
