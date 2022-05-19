@@ -232,13 +232,45 @@ h5 {
   text-shadow: black 1px 1px;
 }
 
-.btn:hover, .btn:focus{
-  box-shadow:none;
+.form-btn {
+  background: var(--london-blue);
+  color: white;
+}
+
+.gifSearchBox {
+  border-radius: 0.25rem;
+}
+.gif-button {
+  background: var(--london-red);
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  color: white;
+}
+
+.reply-button:hover,
+.search-button:hover,
+.form-btn:hover,
+.gif-button:hover {
+  color: white;
+  transform: scale(1.04);
+}
+
+.reaction-button {
+  transition: transform 0.1s ease-in;
+}
+
+.reaction-button:hover {
+  transform: rotate(20deg);
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: none;
 }
 
 .nav-bar {
   align-items: center;
-  justify-content:flex-end;
+  justify-content: flex-end;
   width: 100%;
   position: fixed;
   z-index: 100;
@@ -251,14 +283,15 @@ h5 {
 }
 
 .navbar-toggler {
-  right:85vw;
+  right: 85vw;
   position: absolute;
   border-style: none;
   top: -1rem;
 }
 
-.navbar-toggler:hover, .navbar-toggler:focus {
-   box-shadow:none;
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  box-shadow: none;
 }
 
 .nav-items {
@@ -273,7 +306,6 @@ h5 {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   margin-right: 2rem;
-  
 }
 
 .nav-item:hover {
@@ -320,10 +352,11 @@ h5 {
   display: none;
 }
 
-
 @media (max-width: 500px) {
-.carousel-control-prev, .carousel-control-next {
-display:none;
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
 }
 
 footer {
@@ -341,8 +374,14 @@ footer {
   display: flex;
   flex-direction: column;
 }
+
 .footer-text > a:hover {
   text-decoration: none;
   color: var(--london-red);
+}
 
+.footer-text > p {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--london-red);
 }
