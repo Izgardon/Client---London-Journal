@@ -17,6 +17,17 @@
     <!-- IMAGE CAROUSEL -->
 
     <header>
+      <div class="nav-bar flex">
+          
+        <nav>
+          <ul id="nav-items" class="nav-items" data-visible="false">
+            <li><a class="nav-item" href="#home" >Home</a></li>
+            <li><a class="nav-item" href="#travel-advice" r>Travel Advice</a></li>
+            <li><a class="nav-item" href="#tourist-attractions" >Tourist Attractions</a></li>
+            <li><a class="nav-item" href="#restaurants" >Restaurants & Hotels</a></li>
+          </ul>
+        </nav>
+      </div>
       <div id="carouselExampleInterval" class="carousel slide " data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active image-carousel" data-bs-interval="5000">
@@ -58,11 +69,11 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Title:</label>
-                  <input type="text" class="form-control general-title" required>
+                  <input type="text" class="form-control general-title" maxlength="40" required>
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control general-body" rows="5"  maxlength="200" required></textarea>
+                  <textarea class="form-control general-body" rows="5"  maxlength="150" required></textarea>
                 </div>
                 <button type="button" id="general" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
               </form>
@@ -86,11 +97,11 @@
               <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">Title:</label>
-                  <input type="text" class="form-control attractions-title" required>
+                  <input type="text" class="form-control attractions-title" maxlength="35" required>
                 </div>
                 <div class="mb-3">
                   <label for="message-text" class="col-form-label">Message:</label>
-                  <textarea class="form-control attractions-body" rows="5"  maxlength="200" required></textarea>
+                  <textarea class="form-control attractions-body" rows="5"  maxlength="150" required></textarea>
                 </div>
                 <button type="button" id="attractions" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
               </form>
@@ -115,11 +126,11 @@
             <form>
               <div class="mb-3">
                 <label for="recipient-name" class="col-form-label">Title:</label>
-                <input type="text" class="form-control places-title" required>
+                <input type="text" class="form-control places-title" maxlength="35" required>
               </div>
               <div class="mb-3">
                 <label for="message-text" class="col-form-label">Message:</label>
-                <textarea class="form-control places-body" rows="5"  maxlength="200" required></textarea>
+                <textarea class="form-control places-body" rows="5"  maxlength="150" required></textarea>
               </div>
               <button type="button" id="places" data-bs-dismiss="modal" class="form-btn btn nav-button">Add Post</button>
             </form>
@@ -165,22 +176,25 @@
 
         <!-- TITLE SECTION -->
 
-<h1 class="london-red p-5">London Travel Title</h1>
-
-
-    <!-- NAVIGATION SECTION -->
-
-        <a class="btn nav-button" href="#travel-advice" role="button">Travel Advice</a>
-        <a class="btn nav-button" href="#tourist-attractions" role="button">Tourist Attractions</a>
-        <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
-        <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
-    
+        
+        
+        <!-- NAVIGATION SECTION -->
+        
+         
+        
+        
+        
+        <h1 class="london-red p-5 main-header" id="home">The London Journal</h1>
     <!-- Search Bar -->
 
+    
+    <!-- Search carousel -->
+    
+    <h2 id="search-header" class="london-red p-5">Search for a Post!</h2>
     <div class="search-wrapper">
-      <label for="site-search">Search Site</label>
-      <input type="search" id="site-search" data-search>
-      <button class="search-button" type="button">Search Here</button>
+
+      <input type="search" id="site-search" placeholder="Search for the Post you want..." data-search>
+      <button class="search-button btn" type="button">Search</button>
     </div>
     <div>
       <template data-search-template>
@@ -191,14 +205,34 @@
       </template>
     </div>
 
+    <div id="search-carousel" class="carousel slide  p-3 search-hidden">
+            
+          <div class="carousel-inner search-posts">
+
+          </div>
+
+          <button class="carousel-control-prev " type="button" data-bs-target="#search-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="slide-btn"><</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#search-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="slide-btn">></span>
+          </button>
+        </div>
+      </div>
         
         <!-- ADVICE SECTION -->
 
-        <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
 
-        <button type="button" class="btn nav-button" data-bs-toggle="modal" id="general-button" data-bs-target="#form-general">Open modal</button>
-        
-        
+        <div class="title-submit">
+          <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
+          
+          <button type="button" class="btn post-button" data-bs-toggle="modal" id="general-button" data-bs-target="#form-general">&#10133</button>
+        </div>
+          
+          
+
 
         <!-- Advice Carousel -->
 
@@ -210,11 +244,11 @@
 
             <button class="carousel-control-prev " type="button" data-bs-target="#advice-carousel" data-bs-slide="prev">
               <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-              <span class="slide-btn"><</span>
+              <span class="slide-btn">&#x2190</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#advice-carousel" data-bs-slide="next">
               <span class="carousel-control-next-icon " aria-hidden="true"></span>
-              <span class="slide-btn">></span>
+              <span class="slide-btn">&#x2192</span>
             </button>
           </div>
         </div>
@@ -222,11 +256,14 @@
 
  <!-- TOURIST ATTRACTIONS SECTION -->
 
- <h2 id="tourist-attractions" class="london-red p-5">Tourist Attractions</h2>
- <button type="button" class="btn nav-button" data-bs-toggle="modal" id="attractions-button" data-bs-target="#form-attractions">Open modal</button>
+ <div class="title-submit">
+   <h2 id="tourist-attractions" class="london-red p-5">Tourist Attractions</h2>
 
- <!-- Attractions Carousel -->
- 
+   <button type="button" class="btn post-button" data-bs-toggle="modal" id="attractions-button" data-bs-target="#form-attractions">&#10133</button>
+  </div>
+   
+   <!-- Attractions Carousel -->
+   
  <div id="attractions-carousel" class="carousel slide p-3">
   <div class="carousel-inner attractions-posts">
 
@@ -237,20 +274,23 @@
     
          <button class="carousel-control-prev" type="button" data-bs-target="#attractions-carousel" data-bs-slide="prev">
            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-           <span class="slide-btn"><</span>
+           <span class="slide-btn">&#x2190</span>
          </button>
          <button class="carousel-control-next" type="button" data-bs-target="#attractions-carousel" data-bs-slide="next">
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-           <span class="slide-btn">></span>
+           <span class="slide-btn">&#x2192</span>
          </button>
        </div>
        </div>
 
 <!-- RESTAURANTS SECTION -->
 
-<h2 id="restaurants" class="london-red p-5">Restaurants & Hotels</h2>
-<button type="button" class="btn nav-button" data-bs-toggle="modal" id="places-button" data-bs-target="#form-places">Open modal</button>
-
+<div class="title-submit">
+  <h2 id="restaurants" class="london-red p-5">Restaurants & Hotels</h2>
+  
+  <button type="button" class="btn post-button" data-bs-toggle="modal" id="places-button" data-bs-target="#form-places">&#10133</button>
+</div>
+  
 <!-- Restaurants Carousel -->
 
 <div id="restaurants-carousel" class="carousel slide p-3">
@@ -261,11 +301,11 @@
          </div>
          <button class="carousel-control-prev" type="button" data-bs-target="#restaurants-carousel" data-bs-slide="prev">
            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-           <span class="slide-btn"><</span>
+           <span class="slide-btn">&#x2190</span>
          </button>
          <button class="carousel-control-next" type="button" data-bs-target="#restaurants-carousel" data-bs-slide="next">
            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-           <span class="slide-btn">></span>
+           <span class="slide-btn">&#x2192</span>
          </button>
        </div>
        </div>

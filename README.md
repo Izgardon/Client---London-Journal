@@ -33,13 +33,14 @@
 - Express
 - Jest
 - Supertest
-- Wireframes
+- Balsamiq
 
 ## Process
 
 - Planning
 
   - Choosing a topic - London and travelling
+
   - Creating a vision of our webpage for mobile first approach:
 
     - Using Wireframes for visualisation:
@@ -66,14 +67,16 @@ The main colours used in this project were:
 
 </div>
 
-These colours replicate the blue and red of English flag found often in association of England's capital.
+These colours replicate the blue and red of the Union Jack.
 
 - Creating 2 repos - [server](https://github.com/alicekres/Lap-1-Portfolio-Project-Server) and [client](https://github.com/Izgardon/Lap-1-Portfolio-Project-Client)
-- Creating api endpoints in server / Backend setup
+- Creating API endpoints in server / Backend setup
 - Creating main page initial structure with CSS and HTML
 - Discussing in more detail the cards structure and webpage functionality
 - Deploying server repo (staging branch) to [Heroku](https://dashboard.heroku.com/apps)
-- Focusing on Javascript functionality and detailed structure of our webpage (adding new cards to carousels)
+- Creating a modal to post a topic
+- Creating a modal to reply to a topic
+- Creating Giphy search bar
 - Creating favicon:
 
 <div align="center">
@@ -92,66 +95,69 @@ These colours replicate the blue and red of English flag found often in associat
 
 ## Wins
 
-- managed to add a new post/card dynamically to the correct carousel section
+- Deployed through Heroku with no struggle which freed up a lot of time
+
+- Created a server with 3 different routes but built in a way that each function could be universal and would get/post the correct data
+  to the correct JSON file
+
+- Learned how to fetch gifs with the right API key and getting it working from different servers
+
+- Adding the modals for posting a new topic and replying to a topic about the user's experience in London
+
+- Created a function that worked for both sending a normal reply and for sending a gif reply when one was chosen
+
+- Search bar to return great keyword matches and then display all results in a new carousel which could contain data from all 3 datatypes
+
+- managed to add a new post/card dynamically to the correct carousel section - clears all posts then re-displays as to not refresh the page
+
+- created one patch function that patches for both emoji count and replies
+
+- great test coverage on server side
 
 ```
+//Universal Function that deals with appending the posts to the correct carousel page (including search)
+//This was complicated as we want to post new posts in the first position, but it wasnt as simple as just reversing the array due to
+//how the pages worked
 
-//Function that deals with appending the posts to the correct carousel page
+function append(dataType, post, allData, position) {
+  let postNumber = allData.length + 1 - `${position + 1}`;
 
-function append(dataType, post) {
-  let page = Math.ceil(post.id / 3);
+  let page = Math.ceil(postNumber / 3);
 
   //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
 
-  if (post.id % 3 == 1) {
-    eval(document.querySelector(`.${dataType}-posts`)).insertAdjacentHTML(
-      'beforeend',
-      `<div class="carousel-item ${
-        page == 1 ? 'active' : ''
-      }  ${dataType}-${page}"></div>`
-    );
-    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      'beforeend',
-      ` <div class="card main-card m-3"  style="width: 18rem;">
-
-                    <div class="card-body">
-                      <h5 class="card-title">${post.title}</h5>
-                      <p class="card-text">${post.body}</p>
-                      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
-                    </div>
-              </div>
-            `
-    );
+  if (postNumber % 3 == 1) {
+    document
+      .querySelector(`.${dataType}-posts`)
+      .insertAdjacentHTML(
+        "beforeend",
+        `<div class="carousel-item ${
+          page == 1 ? "active" : ""
+        }  ${dataType}-${page}"></div>`
+      );
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
   }
 
   //Else statement deals with just adding new posts to current carousel page
   else {
-    document.querySelector(`.${dataType}-${page}`).insertAdjacentHTML(
-      'beforeend',
-      ` <div class="card main-card m-3"  style="width: 18rem;">
-
-                  <div class="card-body">
-                    <h5 class="card-title">${post.title}</h5>
-                    <p class="card-text">${post.body}</p>
-                    <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
-                  </div>
-            </div>
-          `
-    );
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
   }
 }
 
+
 ```
-
-- learnt how to fetch gifs with the right APIkey and getting it working from different servers
-
-- Adding a modal for posting a new message about user's experience in London
 
 <br>
 
 ## Challenges
 
-- Adding APIKey for gifs in heroku and using APIKey manually in developement branches where we were still working at
+- Dynamically adding a new card to the carousel with the correct content and ID.
+- Adding API key for gifs in heroku and using APIKey manually in the development branches we were still working on.
+- Making sure the correct replies were collected depending on which post you opened up - as it worked through one modal.
 
 <div align="center">
 
@@ -159,19 +165,52 @@ function append(dataType, post) {
 
 </div>
 
-- Making emojis interactive in such a may their count goes up and a user can't click on the same emoji straight away countless times
+- Making emojis interactive so that the count goes up and a user can't click on the same emoji straight away countless times
 
 - Adding search bar and being able to find a right card / topic among 3 different carousels full of their own array of cards
 
 ## Contribution guide
 
+Wireframes - Shoreen
+
+Favicon - Alice
+
+Design - All
+
+Server - William
+
+Displaying posts - Aaron, William
+
+New Post Modal & Reply Modal - Aaron, William
+
+CSS - Aaron, William
+
+Emoji functionality - Aaron, William
+
+Giphy Search - Shoreen
+
+Search Bar- William
+
+README - Alice, Shoreen
+
+Deploying - Alice
+
+Testing - Alice
+
 ## Bugs
 
 - Cannot PATCH/ regards to emojis
 - Gifs get called 2 x times instead of once upon pressing a button
-- exporting functions and using them in testing file causes the test run already beforehand calling
+- Exporting functions and using them in testing file causes the test to run before calling
 
 ## Future features
+
+- Extend the search function to the replies
+- Contact us page
+- Social media links
+- User account
+- Customised images
+- Add reactions to individual replies
 
 ## Licence
 
