@@ -16,8 +16,8 @@ h5 {
 }
 
 :root {
-  --london-red: #af4a4a;
-  --london-blue: #646e95;
+  --london-red: rgba(226, 35, 35, 0.8);
+  --london-blue: rgba(10, 10, 70, 0.9);
   --london-white: #efefef;
   --modal-grey: #dee2e6;
 }
@@ -53,6 +53,11 @@ h5 {
 }
 
 .search-wrapper {
+  position: relative;
+  max-width: 750px;
+  width: 80%;
+  margin-inline: auto;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   padding: 2rem;
@@ -62,10 +67,24 @@ h5 {
 .search-button {
   background-color: var(--london-blue);
   color: var(--london-white);
+  border-radius: 1rem;
+  margin-right: 3rem;
+  margin-left: 1rem;
+}
+
+.close-search {
+  color: white;
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 #site-search {
+  border-radius: 2rem;
   width: 30rem;
+  padding: 0.5rem;
 }
 
 /* Cards */
@@ -225,7 +244,7 @@ h5 {
   z-index: 100;
   padding: 1.5rem 0 1rem 0;
   right: 0;
-  background-color: rgba(10, 10, 70, 0.6);
+  background-color: rgba(10, 10, 70, 0.8);
   backdrop-filter: blur(1rem);
   display: flex;
   text-align: right;
@@ -259,7 +278,7 @@ h5 {
 
 .nav-item:hover {
   text-decoration: none;
-  color: white;
+  color: var(--london-red);
 }
 
 .nav-item::after {
@@ -270,7 +289,7 @@ h5 {
   height: 1px;
   bottom: 0;
   left: 0;
-  background-color: white;
+  background-color: var(--london-red);
   transition: width 0.3s ease-in;
 }
 
@@ -301,8 +320,29 @@ h5 {
   display: none;
 }
 
+
 @media (max-width: 500px) {
 .carousel-control-prev, .carousel-control-next {
 display:none;
 }
+
+footer {
+  height: 200px;
+  width: 100%;
+  background: var(--london-blue);
+  margin-top: 4rem;
+  padding: 2rem;
+}
+
+.footer-text > a {
+  color: white;
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+}
+.footer-text > a:hover {
+  text-decoration: none;
+  color: var(--london-red);
+
 }
