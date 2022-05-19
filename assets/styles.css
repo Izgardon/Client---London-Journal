@@ -12,7 +12,7 @@ h5 {
 }
 
 :root {
-  --london-red: #e22323;
+  --london-red: rgba(226, 35, 35, 0.8);
   --london-blue: rgba(10, 10, 70, 0.9);
   --london-white: #efefef;
   --modal-grey: #dee2e6;
@@ -49,10 +49,11 @@ h5 {
 }
 
 .search-wrapper {
+  position: relative;
   max-width: 750px;
   width: 80%;
   margin-inline: auto;
-  border-radius: 2rem;
+  border-radius: 1rem;
   display: flex;
   justify-content: center;
   padding: 2rem;
@@ -62,8 +63,18 @@ h5 {
 .search-button {
   background-color: var(--london-blue);
   color: var(--london-white);
-  border-radius: 2rem;
+  border-radius: 1rem;
+  margin-right: 3rem;
   margin-left: 1rem;
+}
+
+.close-search {
+  color: white;
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 #site-search {
