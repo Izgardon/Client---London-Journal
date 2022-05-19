@@ -70,18 +70,20 @@ function searchAppend(e) {
 
 async function searchData(searchList) {
   try {
-    let responseG = await fetch("http://localhost:3000/general");
+    let responseG = await fetch("https://london-travel.herokuapp.com/general");
     let generalData = await responseG.json();
     generalData.forEach((post) => {
       searchList.push(post);
     });
-    let responseP = await fetch("http://localhost:3000/places");
+    let responseP = await fetch("https://london-travel.herokuapp.com/places");
     let placesData = await responseP.json();
 
     placesData.forEach((post) => {
       searchList.push(post);
     });
-    let responseA = await fetch("http://localhost:3000/attractions");
+    let responseA = await fetch(
+      "https://london-travel.herokuapp.com/attractions"
+    );
     let attractionsData = await responseA.json();
 
     attractionsData.forEach((post) => {
@@ -99,7 +101,7 @@ function clearAllPosts(dataType) {
 }
 
 function getAllPosts(dataType) {
-  fetch(`http://localhost:3000/${dataType}`)
+  fetch(`https://london-travel.herokuapp.com/${dataType}`)
     .then((r) => r.json())
     .then((allPostData) => {
       for (let i = allPostData.length; i >= 1; i--) {
@@ -149,7 +151,7 @@ function postNewPost(dataType, post) {
       "Content-Type": "application/json",
     },
   };
-  fetch(`http://localhost:3000/${dataType}`, options)
+  fetch(`https://london-travel.herokuapp.com/${dataType}`, options)
     .then((r) => r.json())
     .catch(console.warn);
 
@@ -210,7 +212,7 @@ function emojiCounter(e) {
       },
     };
 
-    fetch(`http://localhost:3000/${dataType}/${postId}`, options);
+    fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`, options);
   }
 }
 
@@ -223,7 +225,7 @@ function createReplyModal(e) {
     let dataType = e.target.id.split("-")[0];
     let postId = e.target.id.split("-")[1];
 
-    fetch(`http://localhost:3000/${dataType}/${postId}`)
+    fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`)
       .then((r) => r.json())
       .then((postData) => {
         replyModalArea.insertAdjacentHTML(
@@ -279,7 +281,7 @@ function sendReply(e, isGif = "no", gifDataType, gifPostId) {
     },
   };
 
-  fetch(`http://localhost:3000/${dataType}/${postId}`, options);
+  fetch(`https://london-travel.herokuapp.com/${dataType}/${postId}`, options);
 }
 
 //Sending gifs (calls the sendReply function and modifies it for gifs)
