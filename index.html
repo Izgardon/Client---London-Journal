@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/styles.css">
+    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/Hz2s6jp/favicon-32x32.png" class="favicon">
     <script src="assets/scripts/index.js" type="module" defer></script>
 </head>
 
@@ -137,7 +138,7 @@
 
     
       <div class="modal fade" id="reply-modal"  tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true" >
-        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable" id="reply-modal-container">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" id="reply-modal-container">
           <div class="modal-content modal-reply-area">
             
       <!-- <div class="modal-header">
@@ -174,10 +175,45 @@
         <a class="btn nav-button" href="#restaurants" role="button">Restaurants</a>
         <a class="btn nav-button" href="#hotels" role="button">Hotels</a>
     
-        <!-- Giphy -->
+    <!-- Search Bar -->
 
+    <div class="search-wrapper">
+      <label for="site-search">Search Site</label>
+      <input type="search" id="site-search" data-search>
+      <button class="search-button" type="button">Search Here</button>
+    </div>
+    <div>
+      <template data-search-template>
+        <ul id="searchResults">
+          <li class="searchTitle"></li>
+          <li class="searchBody"></li>
+        </ul>
+      </template>
+    </div>
+
+    <!-- Search carousel -->
+
+    <h2 id="search-header" class="london-red p-5">Search Results</h2>
+
+    <div id="search-carousel" class="carousel slide  p-3">
+            
+          <div class="carousel-inner search-posts">
+
+          </div>
+
+          <button class="carousel-control-prev " type="button" data-bs-target="#search-carousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon " aria-hidden="true"></span>
+            <span class="slide-btn"><</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#search-carousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon " aria-hidden="true"></span>
+            <span class="slide-btn">></span>
+          </button>
+        </div>
+      </div>
         
         <!-- ADVICE SECTION -->
+
 
         <div class="title-submit">
           <h2 id="travel-advice" class="london-red p-5">Travel Advice</h2>
@@ -186,6 +222,7 @@
         </div>
           
           
+
 
         <!-- Advice Carousel -->
 
