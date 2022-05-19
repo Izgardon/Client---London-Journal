@@ -7,6 +7,7 @@ const replyModalArea = document.querySelector(".modal-reply-area");
 const searchBar = document.querySelector("#site-search");
 const searchButton = document.querySelector(".search-button");
 const searchResultsArea = document.querySelector("#search-carousel");
+const closeSearch = document.querySelector(".close-search");
 
 //Adding all posts that are on server on load
 
@@ -33,6 +34,12 @@ document.addEventListener("click", (e) => {
 
 //This function appends the items that match the seach criteria into the new search
 
+closeSearch.addEventListener("click", (e) => {
+  searchResultsArea.classList.add("search-hidden");
+  clearAllPosts("search");
+  closeSearch.classList.add("search-hidden");
+});
+
 function searchAppend(e) {
   if (e.target.classList.contains("search-button")) {
     e.preventDefault();
@@ -52,7 +59,9 @@ function searchAppend(e) {
 
       searchList = [];
       if (results[0]) {
+        closeSearch.classList.remove("search-hidden");
         searchResultsArea.classList.remove("search-hidden");
+        searchBar.value = "";
         results.forEach((result) =>
           append(
             "search",
