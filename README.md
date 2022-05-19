@@ -59,8 +59,8 @@ The main colours used in this project were:
 
 <div align="center">
 
-#646E95 = blue
-#AF4A4A = red
+Red: #e22323;
+Blue: rgba(10, 10, 70, 0.9);
 
 ![Blue colour](https://i.ibb.co/0C9wcM5/Screenshot-2022-05-17-095516.png)
 ![Red colour](https://i.ibb.co/vxYKHm1/Screenshot-real-2022-05-17-095719.png)
