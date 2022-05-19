@@ -336,30 +336,37 @@ function returnPost(dataType, post) {
   return ` <div class="card main-card m-3"  style="width: 18rem;">
                             
     <div class="card-body">
+
+    <div class="card-post">
       <h5 class="card-title">${post.title}</h5>
       <p class="card-text">${post.body}</p>
-      <button class="btn card-button reply-button" id="${post.type}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
 
+      <button class="btn card-button reply-button" id="${dataType}-${post.id}" data-bs-toggle="modal" data-bs-target="#reply-modal">View the Discussion</button>
+    </div>
+
+    <div class="card-reactions">
       <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*1">
+
       &#127913
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[0]}
       </span>
       </button>
 
       <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*2">
       &#128077
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[1]}
       </span>
       </button>
 
       <button type="button" class="btn position-relative reaction-button" id="${post.type}*${post.id}*3">
       &#128293
-      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger emo-count">
+      <span class="position-absolute top-100 translate-middle badge rounded-pill bg-danger emo-count">
       ${post.reactions[2]}
       </span>
       </button>
+    </div>
     </div>
 </div>
 `;
@@ -371,21 +378,28 @@ function returnReplyModal(postData, dataType, postId) {
     <h5 class="modal-title" >${postData.title}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
+  <h5 class="reply-modal-title">Original Post:</h5>
   <div class="modal-body-post">${postData.body}</div>
+  <h5 class="reply-modal-title">Replies:</h5>
   <div class="modal-body modal-reply-body">
-    </div>
-  
+  </div>
   <label for="reply-text" class="col-form-label"></label>
   <textarea class="form-control replyMessageBox attractions-body" rows="3" style="max-width: 600px; margin-inline:auto;" maxlength="150" id="${dataType}-${postId}-reply-box" placeholder="Message" required></textarea>
-        <form onkeydown="return event.key != 'Enter';">
-          <label for="search">Search</label>
-          <input  class= "gifSearchBox" type="search" id="search">
-          <button type="button" id="gifSearch">Go</button>
-        </form>
-      
-          <div class="displayGiphy"></div>
+
+  <form onkeydown="return event.key != 'Enter';">
+  <label for="search">Search</label>
+  <input class= "gifSearchBox" type="search" id="search">
+  <div id="gifSearch">Go</div>
+  </form>
+  
+  <div class="displayGiphy"></div>
+  <form>
 
   <button type="button" id="${dataType}-${postId}-reply-button"  class="form-btn btn nav-button">Send reply</button>
+  </form>
+  <div class="modal-footer">
+  
+  </div>
   
 `;
 }

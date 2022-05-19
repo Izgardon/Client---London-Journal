@@ -1,14 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&display=swap');
+
+
 body {
   text-align: center;
+}
+
+h1, h2, h5 {
+  font-family: 'Koulen', cursive;
+  margin: 0px;
 }
 
 :root {
 
     --london-red: #af4a4a;
     --london-blue: #646e95;
-    --London-white: #efefef;
+    --london-white: #efefef;
+    --modal-grey: #dee2e6
     }
     
+    
+    .london-blue {
+      color: var(--london-blue);
+    }
+    
+    .bg-london-blue {
+      background-color: var(--london-blue);
+    }
+    
+    .london-red {
+      color: var(--london-red);
+    }
+    
+    .bg-london-red {
+      background-color: var(--london-red);
+    }
     
     .image-carousel {
         object-fit: cover;
@@ -16,49 +41,106 @@ body {
         object-position: 10px 50px;
         
     }
-    
-    .london-blue {
-        color: var(--london-blue);
-      }
-      
-      .bg-london-blue {
-        background-color: var(--london-blue);
-      }
-      
-      .london-red {
-        color: var(--london-red);
-      }
-      
-      .bg-london-red {
-        background-color: var(--london-red);
-      }
-    
+
+    /* Title and Post */
+
+    .title-submit {
+      display: flex;
+      justify-content: center;
+    }
+
+    .post-button {
+      font-size: 20px;
+    }
+
+    /* Cards */
+
+    .card {
+      border: black solid 1px;
+      aspect-ratio: 1;
+      height: 300px;
+    }
+
     .main-card {
-        display: inline-flex;
-        width: 18rem;
+      display: inline-flex;
+      width: 18rem;
     }
     
-    .card-img-top {
-        height: 18rem;
-        object-fit: cover;
+    .card-body {
+      display: inline-flex;
+      padding: 1rem 8px;
+      text-align: center;
+      overflow: hidden;
     }
+
+    .card-post {
+      padding-right: 8px;
+    }
+
+    .card-title {
+      word-wrap:;
+    }
+
+    .card-text {
+      text-align: justify;
+    }
+    
+    .card-reactions {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      border-left: black 1px solid;
+    }
+
+    .card-button {
+      background-color: var(--london-blue);
+      color: var(--london-white);
+      position: absolute;
+      bottom: 5%;
+      left: 9%;
+    }
+    
+    
+.reaction-button {
+  font-size: 1.5rem;
+}
+
+.rounded-pill {
+  font-size: 0.7rem;
+}
 
     .nav-button {
         background-color: var(--london-blue);
-        color: var(--London-white);
+        color: var(--london-white);
+        
       }
       
-      .card-button {
-        background-color: var(--london-red);
-        color: var(--London-white);
-        position: absolute;
-        bottom: 5%;
-        left: 28%;
+      
+      .slide-btn {
+        color: black;
+        font-size: 3rem;
       }
       
-      .main-card {
-        display: inline-flex;
-      }
+     /* Modal */
+  .modal-header, .modal-footer {
+    background-color: var(--london-blue);
+    color: var(--london-white);
+  }
+
+  .reply-modal-title{
+    font-size: 18px;
+    padding: 1rem;
+  }
+
+  .modal-body-post {
+    border-bottom: var(--modal-grey) 1px solid;
+    padding-bottom: 1rem;
+  }
+
+.reply {
+  border-top: var(--modal-grey) 1px solid;
+    padding-bottom: 1rem;
+}
 
 /* Giphy */
 
@@ -100,18 +182,3 @@ body {
         }
       }
  
-.card {
-  border: black solid 1px;
-  aspect-ratio: 1;
-  height: 300px;
-}
-
-.card-body {
-  padding-top: 2rem;
-  text-align: center;
-}
-
-.slide-btn {
-  color: black;
-  font-size: 3rem;
-}
