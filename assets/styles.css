@@ -251,6 +251,7 @@ h2 {
 }
 .btn:focus{
   box-shadow:none;
+}
 
 .form-btn {
   background: var(--london-blue);
