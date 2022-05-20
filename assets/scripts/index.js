@@ -308,7 +308,9 @@ function searchAppend(e) {
       }
 
       searchList = [];
-      closeSearch();
+      closeSearchBtn.classList.add("search-hidden");
+      searchResultsArea.classList.add("search-hidden");
+
       if (results[0]) {
         closeSearchBtn.classList.remove("search-hidden");
         searchResultsArea.classList.remove("search-hidden");
