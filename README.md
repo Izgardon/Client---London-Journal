@@ -20,7 +20,7 @@
 
 ## Installation & usage
 
-- Open the webpage here: [London journal](https://journal-to-end-all-journals.herokuapp.com/) OR
+- Open the webpage here: [London journal](https://london-journal.netlify.app/) OR
 - Clone or download code and npm run dev
 
 ## Technologies
@@ -198,13 +198,11 @@ Giphy Search - Shoreen
 
 Search bar and results - William
 
-README - Alice, Shoreen
+README - Alice, Shoreen, William
 
 Deploying - Alice
 
-Client and server testing - Alice
-
-Server testing - Shoreen
+Testing - Alice, Shoreen
 
 ## Bugs
 
