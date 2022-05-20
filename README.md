@@ -53,10 +53,10 @@
 
     </div>
     
-    - [Home Page](Lap-1-Portfolio-Project-Client\wireframes\home.pdf)
-    - [Contact Form](Lap-1-Portfolio-Project-Client\wireframes\contact-form.pdf)
-    - [Journal Entry](Lap-1-Portfolio-Project-Client\wireframes\journal-entry.pdf)
-    - [Modal](Lap-1-Portfolio-Project-Client\wireframes\modal.pdf)
+    - [Home Page](Lap-1-Portfolio-Project-Client\tree\main\wireframes\home.pdf)
+    - [Contact Form](Lap-1-Portfolio-Project-Client\tree\main\wireframes\contact-form.pdf)
+    - [Journal Entry](Lap-1-Portfolio-Project-Client\tree\main\wireframes\journal-entry.pdf)
+    - [Modal](Lap-1-Portfolio-Project-Client\tree\main\wireframes\modal.pdf)
 
   - Choosing colours:
 
