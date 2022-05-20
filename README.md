@@ -52,6 +52,11 @@
     ![](https://i.ibb.co/L9q6HdT/Screenshot-2022-05-17-120959.png)
 
     </div>
+    
+    - [Home Page](Lap-1-Portfolio-Project-Client\wireframes\home.pdf)
+    - [Contact Form](Lap-1-Portfolio-Project-Client\wireframes\contact-form.pdf)
+    - [Journal Entry](Lap-1-Portfolio-Project-Client\wireframes\journal-entry.pdf)
+    - [Modal](Lap-1-Portfolio-Project-Client\wireframes\modal.pdf)
 
   - Choosing colours:
 
@@ -213,6 +218,7 @@ Testing - Alice, Shoreen
 - User account
 - Customised images
 - Add reactions to individual replies
+- Improve coverage for Client side testing
 
 ## Licence
 
