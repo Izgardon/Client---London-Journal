@@ -20,7 +20,7 @@
 
 ## Installation & usage
 
-- Open the webpage here: [London journal](https://journal-to-end-all-journals.herokuapp.com/) OR
+- Open the webpage here: [London journal](https://london-journal.netlify.app/) OR
 - Clone or download code and npm run dev
 
 ## Technologies
@@ -197,7 +197,7 @@ README - Alice, Shoreen
 
 Deploying - Alice
 
-Testing - Alice
+Testing - Alice/Shoreen
 
 ## Bugs
 
