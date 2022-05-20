@@ -86,10 +86,7 @@ function getAllPosts(dataType) {
     })
     //Adding the emoji buttons so timeout function works
     .then(() => {
-      const emojiButtons = document.querySelectorAll(".reaction-button");
-      emojiButtons.forEach((btn) => {
-        btn.addEventListener("click", emojiCounter);
-      });
+      addEmojiClicks();
     });
 }
 
@@ -140,6 +137,13 @@ function postNewPost(dataType, post) {
 }
 
 //Adding emoji counter
+
+function addEmojiClicks() {
+  const emojiButtons = document.querySelectorAll(".reaction-button");
+  emojiButtons.forEach((btn) => {
+    btn.addEventListener("click", emojiCounter);
+  });
+}
 
 function emojiCounter(e) {
   let button = e.target;
@@ -324,6 +328,7 @@ function searchAppend(e) {
             results.length - 1 - results.indexOf(result)
           )
         );
+        addEmojiClicks();
       }
     }, 200);
   }
