@@ -40,6 +40,37 @@ function clearAllPosts(dataType) {
   eval(document.querySelector(`.${dataType}-posts`)).innerHTML = "";
 }
 
+//Function that deals with appending the posts to the correct carousel page
+
+function append(dataType, post, allData, position) {
+  let postNumber = allData.length + 1 - `${position + 1}`;
+
+  let page = Math.ceil(postNumber / 3);
+
+  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
+
+  if (postNumber % 3 == 1) {
+    document
+      .querySelector(`.${dataType}-posts`)
+      .insertAdjacentHTML(
+        "beforeend",
+        `<div class="carousel-item ${
+          page == 1 ? "active" : ""
+        }  ${dataType}-${page}"></div>`
+      );
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+  }
+
+  //Else statement deals with just adding new posts to current carousel page
+  else {
+    document
+      .querySelector(`.${dataType}-${page}`)
+      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
+  }
+}
+
 function getAllPosts(dataType) {
   fetch(`https://london-travel.herokuapp.com/${dataType}`)
     .then((r) => r.json())
@@ -106,37 +137,6 @@ function postNewPost(dataType, post) {
     clearAllPosts(dataType);
     getAllPosts(dataType);
   }, 100);
-}
-
-//Function that deals with appending the posts to the correct carousel page
-
-function append(dataType, post, allData, position) {
-  let postNumber = allData.length + 1 - `${position + 1}`;
-
-  let page = Math.ceil(postNumber / 3);
-
-  //First if block is seeing whether it needs to add a new carousel page and then also appends the first new post
-
-  if (postNumber % 3 == 1) {
-    document
-      .querySelector(`.${dataType}-posts`)
-      .insertAdjacentHTML(
-        "beforeend",
-        `<div class="carousel-item ${
-          page == 1 ? "active" : ""
-        }  ${dataType}-${page}"></div>`
-      );
-    document
-      .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
-  }
-
-  //Else statement deals with just adding new posts to current carousel page
-  else {
-    document
-      .querySelector(`.${dataType}-${page}`)
-      .insertAdjacentHTML("beforeend", returnPost(dataType, post));
-  }
 }
 
 //Adding emoji counter
@@ -323,7 +323,7 @@ function searchAppend(e) {
           )
         );
       }
-    }, 100);
+    }, 200);
   }
 }
 
