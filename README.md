@@ -193,11 +193,11 @@ Giphy Search - Shoreen
 
 Search bar and results - William
 
-README - Alice, Shoreen
+README - Alice, Shoreen, William
 
 Deploying - Alice
 
-Testing - Alice/Shoreen
+Testing - Alice, Shoreen
 
 ## Bugs
 
